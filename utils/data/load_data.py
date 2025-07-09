@@ -4,6 +4,7 @@ from utils.data.transforms import DataTransform
 from torch.utils.data import Dataset, DataLoader
 from pathlib import Path
 import numpy as np
+from data.Augmentation.data_augment import DataAugmentor
 
 class SliceData(Dataset):
     def __init__(self, root, transform, input_key, target_key, forward=False):
@@ -53,6 +54,7 @@ class SliceData(Dataset):
         with h5py.File(kspace_fname, "r") as hf:
             input = hf[self.input_key][dataslice]
             mask =  np.array(hf["mask"])
+            max_slice_index = hf[self.input_key].shape[0] - 1  # Get total number of slices - 1
         if self.forward:
             target = -1
             attrs = -1
@@ -61,7 +63,7 @@ class SliceData(Dataset):
                 target = hf[self.target_key][dataslice]
                 attrs = dict(hf.attrs)
             
-        return self.transform(mask, input, target, attrs, kspace_fname.name, dataslice)
+        return self.transform(mask, input, target, attrs, kspace_fname.name, dataslice, max_slice_index)
 
 
 def create_data_loaders(data_path, args, shuffle=False, isforward=False):
@@ -73,7 +75,7 @@ def create_data_loaders(data_path, args, shuffle=False, isforward=False):
         target_key_ = -1
     data_storage = SliceData(
         root=data_path,
-        transform=DataTransform(isforward, max_key_),
+        transform=DataTransform(isforward, max_key_, args),  # args 전달
         input_key=args.input_key,
         target_key=target_key_,
         forward = isforward

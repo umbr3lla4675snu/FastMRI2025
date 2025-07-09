@@ -9,8 +9,9 @@ import copy
 from collections import defaultdict
 from utils.data.load_data import create_data_loaders
 from utils.common.utils import save_reconstructions, ssim_loss
-from utils.common.loss_function import SSIMLoss
+from utils.common.loss_function import SSIMLoss, WeightedSSIMLoss
 from utils.model.varnet import VarNet
+from utils.data.Augmentation.data_augment import DataAugmentor
 
 import os
 
@@ -21,14 +22,22 @@ def train_epoch(args, epoch, model, data_loader, optimizer, loss_type):
     total_loss = 0.
 
     for iter, data in enumerate(data_loader):
-        mask, kspace, target, maximum, _, _ = data
+        mask, kspace, target, maximum, _, slices, max_slices = data
         mask = mask.cuda(non_blocking=True)
         kspace = kspace.cuda(non_blocking=True)
         target = target.cuda(non_blocking=True)
         maximum = maximum.cuda(non_blocking=True)
+        slices = torch.tensor(slices).cuda(non_blocking=True)
+        max_slices = torch.tensor(max_slices).cuda(non_blocking=True)
 
         output = model(kspace, mask)
-        loss = loss_type(output, target, maximum)
+        
+        # Use weighted loss if available
+        if hasattr(loss_type, 'forward') and len(loss_type.forward.__code__.co_varnames) > 4:
+            loss = loss_type(output, target, maximum, slices, max_slices)
+        else:
+            loss = loss_type(output, target, maximum)
+            
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
@@ -54,7 +63,7 @@ def validate(args, model, data_loader):
 
     with torch.no_grad():
         for iter, data in enumerate(data_loader):
-            mask, kspace, target, _, fnames, slices = data
+            mask, kspace, target, _, fnames, slices, _ = data
             kspace = kspace.cuda(non_blocking=True)
             mask = mask.cuda(non_blocking=True)
             output = model(kspace, mask)
@@ -102,19 +111,30 @@ def train(args):
                    sens_chans=args.sens_chans)
     model.to(device=device)
 
-    loss_type = SSIMLoss().to(device=device)
+    # Choose loss function based on args
+    if hasattr(args, 'use_weighted_loss') and args.use_weighted_loss:
+        loss_type = WeightedSSIMLoss().to(device=device)
+        print("Using Weighted SSIM Loss with index-based weighting")
+    else:
+        loss_type = SSIMLoss().to(device=device)
+        print("Using standard SSIM Loss")
+        
     optimizer = torch.optim.Adam(model.parameters(), args.lr)
 
     best_val_loss = 1.
     start_epoch = 0
 
-    
-    train_loader = create_data_loaders(data_path = args.data_path_train, args = args, shuffle=True)
+    # Validation loader는 한 번만 생성 (augmentation 없음)
     val_loader = create_data_loaders(data_path = args.data_path_val, args = args)
     
     val_loss_log = np.empty((0, 2))
     for epoch in range(start_epoch, args.num_epochs):
         print(f'Epoch #{epoch:2d} ............... {args.net_name} ...............')
+        
+        # Epoch마다 새로운 augmentation train loader 생성
+        # args에 현재 epoch 정보 추가
+        args.current_epoch = epoch
+        train_loader = create_data_loaders(data_path = args.data_path_train, args = args, shuffle=True)
         
         train_loss, train_time = train_epoch(args, epoch, model, train_loader, optimizer, loss_type)
         val_loss, num_subjects, reconstructions, targets, inputs, val_time = validate(args, model, val_loader)
