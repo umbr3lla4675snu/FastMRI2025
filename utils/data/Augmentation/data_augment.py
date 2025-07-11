@@ -7,9 +7,9 @@ import numpy as np
 from math import exp
 import torch
 import torchvision.transforms.functional as TF
-from Augmentation.helpers import complex_crop_if_needed, crop_if_needed, complex_channel_first, complex_channel_last
-from fastmri.data import transforms as T
-from fastmri import fft2c, ifft2c, rss_complex, complex_abs
+from utils.data.Augmentation.helpers import complex_crop_if_needed, crop_if_needed, complex_channel_first, complex_channel_last
+from utils.model.fastmri.data import transforms as T
+from utils.model.fastmri import fft2c, ifft2c, rss_complex, complex_abs
 
 class AugmentationPipeline:
     """
@@ -142,17 +142,29 @@ class AugmentationPipeline:
         return kspace, target
     
     def im_to_target(self, im, target_size):     
-        # Make sure target fits in the augmented image
-        cropped_size = [min(im.shape[-3], target_size[0]), 
-                        min(im.shape[-2], target_size[1])]
+        # Ensure target has exactly the requested size by padding if necessary
+        current_size = [im.shape[-3], im.shape[-2]]
         
+        # If augmented image is smaller than target_size, we need to pad
+        if current_size[0] < target_size[0] or current_size[1] < target_size[1]:
+            pad_h = max(0, target_size[0] - current_size[0])
+            pad_w = max(0, target_size[1] - current_size[1])
+            
+            # Pad the image to ensure we can crop the full target_size
+            if len(im.shape) == 3:
+                # Single-coil: [H, W, 2]
+                im = torch.nn.functional.pad(im, (0, 0, 0, pad_w, 0, pad_h), mode='constant', value=0)
+            else:
+                # Multi-coil: [C, H, W, 2]
+                im = torch.nn.functional.pad(im, (0, 0, 0, pad_w, 0, pad_h, 0, 0), mode='constant', value=0)
+    
         if len(im.shape) == 3: 
             # Single-coil
-            target = complex_abs(T.complex_center_crop(im, cropped_size))
+            target = complex_abs(T.complex_center_crop(im, target_size))
         else:
             # Multi-coil
             assert len(im.shape) == 4
-            target = T.center_crop(rss_complex(im), cropped_size)
+            target = T.center_crop(rss_complex(im), target_size)
         return target  
             
     def random_apply(self, transform_name):
@@ -224,8 +236,8 @@ class DataAugmentor:
         self.current_epoch_fn = current_epoch_fn
         self.hparams = hparams
         self.aug_on = hparams.aug_on
-        if self.aug_on:
-            self.augmentation_pipeline = AugmentationPipeline(hparams)
+        # Always create augmentation pipeline for target generation
+        self.augmentation_pipeline = AugmentationPipeline(hparams)
         self.max_train_resolution = hparams.max_train_resolution
         
     def __call__(self, kspace, target_size):
@@ -254,12 +266,22 @@ class DataAugmentor:
                     im = ifft2c(kspace)
                     im = complex_crop_if_needed(im, self.max_train_resolution)
                     kspace = fft2c(im)
-                    
+                    # Generate target from cropped image
+                    target = self.augmentation_pipeline.im_to_target(im, target_size)
+                else:
+                    # No cropping needed, generate target from original kspace
+                    im = ifft2c(kspace)
+                    target = self.augmentation_pipeline.im_to_target(im, target_size)
+            else:
+                # No max resolution constraint, generate target from original kspace
+                im = ifft2c(kspace)
+                target = self.augmentation_pipeline.im_to_target(im, target_size)
+            
         return kspace, target
         
     def schedule_p(self):
         D = self.hparams.aug_delay
-        T = self.hparams.max_epochs
+        T = self.hparams.num_epochs
         t = self.current_epoch_fn()
         p_max = self.hparams.aug_strength
 

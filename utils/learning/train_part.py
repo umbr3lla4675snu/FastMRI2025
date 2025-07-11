@@ -82,6 +82,13 @@ def validate(args, model, data_loader):
         )
     metric_loss = sum([ssim_loss(targets[fname], reconstructions[fname]) for fname in reconstructions])
     num_subjects = len(reconstructions)
+    
+    # Calculate additional metrics for monitoring
+    ssim_values = [1 - ssim_loss(targets[fname], reconstructions[fname]) for fname in reconstructions]
+    avg_ssim = sum(ssim_values) / len(ssim_values) if ssim_values else 0
+    
+    print(f"Validation metrics: Avg SSIM = {avg_ssim:.4f}, Loss = {metric_loss/num_subjects:.4f}")
+    
     return metric_loss, num_subjects, reconstructions, targets, None, time.perf_counter() - start
 
 
@@ -106,9 +113,26 @@ def train(args):
     torch.cuda.set_device(device)
     print('Current cuda device: ', torch.cuda.current_device())
 
+    # Check if gradient checkpoint is enabled
+    use_gradient_checkpoint = getattr(args, 'gradient_checkpoint', False)
+    if use_gradient_checkpoint:
+        print("Gradient checkpointing enabled - this will save memory but may slow down training")
+
+    # Check augmentation status
+    aug_enabled = getattr(args, 'aug_on', False)
+    if aug_enabled:
+        print("✓ Data augmentation ENABLED")
+        print(f"  - Augmentation strength: {getattr(args, 'aug_strength', 'N/A')}")
+        print(f"  - Augmentation schedule: {getattr(args, 'aug_schedule', 'N/A')}")
+        print(f"  - Rotation weight: {getattr(args, 'aug_weight_rotation', 'N/A')}")
+        print(f"  - Scaling weight: {getattr(args, 'aug_weight_scaling', 'N/A')}")
+    else:
+        print("✗ Data augmentation DISABLED")
+
     model = VarNet(num_cascades=args.cascade, 
                    chans=args.chans, 
-                   sens_chans=args.sens_chans)
+                   sens_chans=args.sens_chans,
+                   use_gradient_checkpoint=use_gradient_checkpoint)
     model.to(device=device)
 
     # Choose loss function based on args
@@ -120,12 +144,24 @@ def train(args):
         print("Using standard SSIM Loss")
         
     optimizer = torch.optim.Adam(model.parameters(), args.lr)
+    
+    # Add learning rate scheduler
+    scheduler = None
+    if hasattr(args, 'lr_scheduler') and args.lr_scheduler:
+        scheduler = torch.optim.lr_scheduler.StepLR(
+            optimizer, 
+            step_size=getattr(args, 'lr_decay_step', 10), 
+            gamma=getattr(args, 'lr_decay_gamma', 0.5)
+        )
+        print(f"Learning rate scheduler enabled: StepLR with step_size={args.lr_decay_step}, gamma={args.lr_decay_gamma}")
 
     best_val_loss = 1.
     start_epoch = 0
 
     # Validation loader는 한 번만 생성 (augmentation 없음)
-    val_loader = create_data_loaders(data_path = args.data_path_val, args = args)
+    val_args = copy.deepcopy(args)
+    val_args.aug_on = False  # Validation에서는 augmentation 비활성화
+    val_loader = create_data_loaders(data_path = args.data_path_val, args = val_args)
     
     val_loss_log = np.empty((0, 2))
     for epoch in range(start_epoch, args.num_epochs):
@@ -139,7 +175,7 @@ def train(args):
         train_loss, train_time = train_epoch(args, epoch, model, train_loader, optimizer, loss_type)
         val_loss, num_subjects, reconstructions, targets, inputs, val_time = validate(args, model, val_loader)
         
-        val_loss_log = np.append(val_loss_log, np.array([[epoch, val_loss]]), axis=0)
+        val_loss_log = np.append(val_loss_log, np.array([[epoch, val_loss/num_subjects]]), axis=0)
         file_path = os.path.join(args.val_loss_dir, "val_loss_log")
         np.save(file_path, val_loss_log)
         print(f"loss file saved! {file_path}")
@@ -154,6 +190,15 @@ def train(args):
         best_val_loss = min(best_val_loss, val_loss)
 
         save_model(args, args.exp_dir, epoch + 1, model, optimizer, best_val_loss, is_new_best)
+        
+        # Update learning rate
+        if scheduler is not None:
+            old_lr = optimizer.param_groups[0]['lr']
+            scheduler.step()
+            new_lr = optimizer.param_groups[0]['lr']
+            if old_lr != new_lr:
+                print(f"Learning rate updated: {old_lr:.6f} -> {new_lr:.6f}")
+        
         print(
             f'Epoch = [{epoch:4d}/{args.num_epochs:4d}] TrainLoss = {train_loss:.4g} '
             f'ValLoss = {val_loss:.4g} TrainTime = {train_time:.4f}s ValTime = {val_time:.4f}s',

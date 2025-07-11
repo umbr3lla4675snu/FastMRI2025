@@ -37,20 +37,60 @@ class DataTransform:
             target = -1
             maximum = -1
         
+        # Store original mask for later use
+        original_mask = mask.copy()
+        original_freq_dim = mask.shape[0]
+        
+        full_kspace = to_tensor(input)
+        full_kspace = torch.stack((full_kspace.real, full_kspace.imag), dim=-1)
+        
         kspace = to_tensor(input * mask)
         kspace = torch.stack((kspace.real, kspace.imag), dim=-1)
         
         # Apply augmentation if available and not in forward mode
         if not self.isforward and self.augmentor is not None:
             # Get target size from original target
-            if hasattr(attrs, self.max_key) and target is not None:
+            if target is not None:
                 target_size = target.shape
             else:
                 target_size = [384, 384]  # Default target size
                 
-            kspace, augmented_target = self.augmentor(kspace, target_size)
+            augmented_kspace, augmented_target = self.augmentor(full_kspace, target_size)
+            
             if augmented_target is not None:
                 target = augmented_target
+                # Update kspace to the augmented version
+                kspace = augmented_kspace
+                
+                # Adjust mask to match the new kspace dimensions
+                new_freq_dim = augmented_kspace.shape[-2]
+                
+                if new_freq_dim != original_freq_dim:
+                    # Create a new mask that matches the augmented kspace size
+                    if new_freq_dim > original_freq_dim:
+                        # Pad the mask (add zeros for additional frequency components)
+                        pad_size = (new_freq_dim - original_freq_dim) // 2
+                        adjusted_mask = np.zeros(new_freq_dim, dtype=original_mask.dtype)
+                        adjusted_mask[pad_size:pad_size + original_freq_dim] = original_mask.squeeze()
+                    else:
+                        # Crop the mask from center
+                        start_idx = (original_freq_dim - new_freq_dim) // 2
+                        adjusted_mask = original_mask.squeeze()[start_idx:start_idx + new_freq_dim]
+                    
+                    # Apply the adjusted mask to the augmented kspace
+                    mask_tensor = torch.from_numpy(adjusted_mask.reshape(1, 1, new_freq_dim, 1).astype(np.float32))
+                    kspace = kspace * mask_tensor
+                    final_mask = adjusted_mask
+                else:
+                    # Mask dimensions match, apply original mask
+                    mask_tensor = torch.from_numpy(original_mask.reshape(1, 1, original_freq_dim, 1).astype(np.float32))
+                    kspace = kspace * mask_tensor
+                    final_mask = original_mask
+            else:
+                final_mask = original_mask
+        else:
+            final_mask = original_mask
         
-        mask = torch.from_numpy(mask.reshape(1, 1, kspace.shape[-2], 1).astype(np.float32)).byte()
-        return mask, kspace, target, maximum, fname, slice, max_slice_index
+        # Final mask tensor creation for return
+        final_mask_tensor = torch.from_numpy(final_mask.reshape(1, 1, kspace.shape[-2], 1).astype(np.float32)).byte()
+        return final_mask_tensor, kspace, target, maximum, fname, slice, max_slice_index

@@ -4,7 +4,7 @@ from utils.data.transforms import DataTransform
 from torch.utils.data import Dataset, DataLoader
 from pathlib import Path
 import numpy as np
-from data.Augmentation.data_augment import DataAugmentor
+from utils.data.Augmentation.data_augment import DataAugmentor
 
 class SliceData(Dataset):
     def __init__(self, root, transform, input_key, target_key, forward=False):
@@ -62,7 +62,7 @@ class SliceData(Dataset):
             with h5py.File(image_fname, "r") as hf:
                 target = hf[self.target_key][dataslice]
                 attrs = dict(hf.attrs)
-            
+        
         return self.transform(mask, input, target, attrs, kspace_fname.name, dataslice, max_slice_index)
 
 
