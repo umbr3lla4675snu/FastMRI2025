@@ -1,28 +1,20 @@
 python train_varnet.py \
-  -b 4 \
-  -e 20 \
+  -b 1 \
+  -e 40 \
   -l 1e-4 \
   -r 100 \
   -n 'test_Varnet2' \
   -t '/root/Data/train/' \
   -v '/root/Data/val/' \
-  --cascade 8 \
-  --chans 18 \
+  --cascade 6 \
+  --chans 13 \
   --sens_chans 8 \
   --seed 146 \
   --use-weighted-loss \
-  --aug_on True \
-  --aug_strength 0.1 \
-  --aug_weight_rotation 0.3 \
-  --aug_weight_scaling 0.2 \
-  --aug_weight_translation 0.8 \
-  --aug_weight_fliph 0.6 \
-  --aug_weight_flipv 0.1 \
-  --aug_max_rotation 8.0 \
-  --aug_max_scaling 0.05 \
-  --aug_max_translation_x 0.08 \
-  --aug_max_translation_y 0.08 \
-  --gradient-checkpoint \
-  --lr-scheduler \
-  --lr-decay-step 15 \
-  --lr-decay-gamma 0.7
+  --aug_on \
+  --aug_delay 4 \
+  --aug_strength 0.5 \
+  --aug_max_rotation 180.0 \
+  --aug_max_shearing_x 15.0 \
+  --aug_max_shearing_y 5.0 \
+  --gradient-checkpoint

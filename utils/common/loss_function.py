@@ -51,7 +51,6 @@ class SSIMLoss(nn.Module):
         )
         D = B1 * B2
         S = (A1 * A2) / D
-
         return 1 - S.mean()
 
 
@@ -107,14 +106,11 @@ class WeightedSSIMLoss(nn.Module):
         S = (A1 * A2) / D
         
         # Calculate SSIM loss per sample
-        ssim_loss_per_sample = 1 - S.mean(dim=(1, 2, 3))  # Shape: [batch_size]
-        
+        ssim_loss_per_sample = 1 - S.mean(dim=[1, 2, 3])  # Shape: [batch_size]
         # Calculate weight using the provided formula
         # weight = cos²(current_slice_index / max_slice_index × π/2)
         normalized_indices = slice_indices.float() / max_slice_indices.float()
         weight = torch.cos(normalized_indices * math.pi / 2) ** 2
-        
         # Apply weights to SSIM loss
         weighted_loss = ssim_loss_per_sample * weight
-        
         return weighted_loss.mean()

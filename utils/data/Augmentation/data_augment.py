@@ -301,7 +301,7 @@ class DataAugmentor:
     def add_augmentation_specific_args(parser):
         parser.add_argument(
             '--aug_on', 
-            default=False,
+            default=True,
             help='This switch turns data augmentation on.',
             action='store_true'
         )
@@ -317,13 +317,13 @@ class DataAugmentor:
         parser.add_argument(
             '--aug_delay', 
             type=int, 
-            default=0,
+            default=17,
             help='Number of epochs at the beginning of training without data augmentation. The schedule in --aug_schedule will be adjusted so that at the last epoch the augmentation strength is --aug_strength.'
         )
         parser.add_argument(
             '--aug_strength', 
             type=float, 
-            default=0.0, 
+            default=1.0, 
             help='Augmentation strength, combined with --aug_schedule determines the augmentation strength in each epoch'
         )
         parser.add_argument(
@@ -391,7 +391,7 @@ class DataAugmentor:
         parser.add_argument(
             '--aug_weight_rot90', 
             type=float, 
-            default=1.0, 
+            default=0.0, 
             help='Weight of probability of rotation by multiples of 90 degrees. Augmentation probability will be multiplied by this constant'
         )  
         parser.add_argument(
@@ -413,31 +413,31 @@ class DataAugmentor:
         parser.add_argument(
             '--aug_max_translation_x', 
             type=float,
-            default=0.125, 
+            default=0.06, 
             help='Maximum translation applied along the x axis as fraction of image width'
         )
         parser.add_argument(
             '--aug_max_translation_y',
             type=float, 
-            default=0.125, 
+            default=0.06, 
             help='Maximum translation applied along the y axis as fraction of image height'
         )
         parser.add_argument(
             '--aug_max_rotation', 
             type=float, 
-            default=180., 
+            default=10., 
             help='Maximum rotation applied in either clockwise or counter-clockwise direction in degrees.'
         )
         parser.add_argument(
             '--aug_max_shearing_x', 
             type=float, 
-            default=15.0, 
+            default=5.0, 
             help='Maximum shearing applied in either positive or negative direction in degrees along x axis.'
         )
         parser.add_argument(
             '--aug_max_shearing_y', 
             type=float, 
-            default=15.0, 
+            default=5.0, 
             help='Maximum shearing applied in either positive or negative direction in degrees along y axis.'
         )
         parser.add_argument(

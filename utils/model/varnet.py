@@ -246,7 +246,7 @@ class VarNet(nn.Module):
 
         for cascade in self.cascades:
             if self.use_gradient_checkpoint and self.training:
-                kspace_pred = checkpoint(cascade, kspace_pred, masked_kspace, mask, sens_maps)
+                kspace_pred = checkpoint(cascade, kspace_pred, masked_kspace, mask, sens_maps, use_reentrant=False)
             else:
                 kspace_pred = cascade(kspace_pred, masked_kspace, mask, sens_maps)
         result = fastmri.rss(fastmri.complex_abs(fastmri.ifft2c(kspace_pred)), dim=1)

@@ -27,13 +27,13 @@ def train_epoch(args, epoch, model, data_loader, optimizer, loss_type):
         kspace = kspace.cuda(non_blocking=True)
         target = target.cuda(non_blocking=True)
         maximum = maximum.cuda(non_blocking=True)
-        slices = torch.tensor(slices).cuda(non_blocking=True)
-        max_slices = torch.tensor(max_slices).cuda(non_blocking=True)
+        slices = slices.clone().detach().cuda(non_blocking=True)
+        max_slices = max_slices.clone().detach().cuda(non_blocking=True)
 
         output = model(kspace, mask)
         
         # Use weighted loss if available
-        if hasattr(loss_type, 'forward') and len(loss_type.forward.__code__.co_varnames) > 4:
+        if isinstance(loss_type, WeightedSSIMLoss):
             loss = loss_type(output, target, maximum, slices, max_slices)
         else:
             loss = loss_type(output, target, maximum)
@@ -82,13 +82,6 @@ def validate(args, model, data_loader):
         )
     metric_loss = sum([ssim_loss(targets[fname], reconstructions[fname]) for fname in reconstructions])
     num_subjects = len(reconstructions)
-    
-    # Calculate additional metrics for monitoring
-    ssim_values = [1 - ssim_loss(targets[fname], reconstructions[fname]) for fname in reconstructions]
-    avg_ssim = sum(ssim_values) / len(ssim_values) if ssim_values else 0
-    
-    print(f"Validation metrics: Avg SSIM = {avg_ssim:.4f}, Loss = {metric_loss/num_subjects:.4f}")
-    
     return metric_loss, num_subjects, reconstructions, targets, None, time.perf_counter() - start
 
 
