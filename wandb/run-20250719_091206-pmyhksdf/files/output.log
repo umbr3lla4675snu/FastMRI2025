@@ -1,0 +1,28 @@
+Current cuda device:  0
+Gradient checkpointing enabled - this will save memory but may slow down training
+✓ Data augmentation ENABLED
+  - Augmentation strength: 0.3
+  - Augmentation schedule: exp
+  - Rotation weight: 1.0
+  - Scaling weight: 1.0
+Using Weighted SSIM Loss with index-based weighting
+Learning rate scheduler enabled: StepLR with step_size=10, gamma=0.5
+Epoch # 0 ............... Varnet_40_epoch ...............
+/root/FastMRI2025/utils/model/varnet.py:294: UserWarning: where received a uint8 condition tensor. This behavior is deprecated and will be removed in a future version of PyTorch. Use a boolean condition instead. (Triggered internally at /pytorch/aten/src/ATen/native/TensorCompare.cpp:611.)
+  soft_dc = torch.where(mask, current_kspace - ref_kspace, zero) * self.dc_weight
+Epoch = [  0/ 40] Iter = [   0/4937] Loss = 0.2318 Time = 1.2256s
+Epoch = [  0/ 40] Iter = [ 100/4937] Loss = 0.0068 Time = 110.8959s
+Epoch = [  0/ 40] Iter = [ 200/4937] Loss = 0.06934 Time = 111.3647s
+Epoch = [  0/ 40] Iter = [ 300/4937] Loss = 0.1325 Time = 108.9119s
+Epoch = [  0/ 40] Iter = [ 400/4937] Loss = 0.05216 Time = 107.8743s
+Epoch = [  0/ 40] Iter = [ 500/4937] Loss = 0.0121 Time = 110.7056s
+Epoch = [  0/ 40] Iter = [ 600/4937] Loss = 0.003661 Time = 110.4376s
+Epoch = [  0/ 40] Iter = [ 700/4937] Loss = 0.00164 Time = 107.7380s
+Traceback (most recent call last):
+  File "/root/FastMRI2025/train_varnet.py", line 68, in <module>
+    train(args)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 170, in train
+    print(f'Epoch #{epoch:2d} ............... {args.net_name} ...............')
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 45, in train_epoch
+    loss = loss_type(output, target, maximum, slices, max_slices)
+KeyboardInterrupt

@@ -1,0 +1,38 @@
+wandb_version: 1
+
+aug_delay:
+  value: 10
+aug_max_rotation:
+  value: 10
+aug_max_shearing_x:
+  value: 5
+aug_max_shearing_y:
+  value: 2
+aug_on:
+  value: true
+aug_schedule:
+  value: exp
+aug_strength:
+  value: 0.3
+cascade:
+  value: 6
+chans:
+  value: 13
+lr:
+  value: 0.001
+lr-decay-gamma:
+  value: 0.5
+lr-decay-step:
+  value: 10
+lr-scheduler:
+  value: true
+net_name:
+  value: test_Varnet_sweep
+num-epochs:
+  value: 10
+seed:
+  value: 146
+sens_chans:
+  value: 5
+use-weighted-loss:
+  value: false

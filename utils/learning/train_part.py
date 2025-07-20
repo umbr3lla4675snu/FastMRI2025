@@ -5,6 +5,7 @@ import torch.nn as nn
 import time
 from pathlib import Path
 import copy
+import wandb
 
 from collections import defaultdict
 from utils.data.load_data import create_data_loaders
@@ -31,6 +32,13 @@ def train_epoch(args, epoch, model, data_loader, optimizer, loss_type):
         max_slices = max_slices.clone().detach().cuda(non_blocking=True)
 
         output = model(kspace, mask)
+        
+        # output과 target의 shape이 다르면 최소 크기로 crop
+        if output.shape != target.shape:
+            min_h = min(output.shape[-2], target.shape[-2])
+            min_w = min(output.shape[-1], target.shape[-1])
+            output = output[..., :min_h, :min_w]
+            target = target[..., :min_h, :min_w]
         
         # Use weighted loss if available
         if isinstance(loss_type, WeightedSSIMLoss):
@@ -127,6 +135,7 @@ def train(args):
                    sens_chans=args.sens_chans,
                    use_gradient_checkpoint=use_gradient_checkpoint)
     model.to(device=device)
+    wandb.watch(model, log='all', log_freq=100)
 
     # Choose loss function based on args
     if hasattr(args, 'use_weighted_loss') and args.use_weighted_loss:
@@ -196,6 +205,13 @@ def train(args):
             f'Epoch = [{epoch:4d}/{args.num_epochs:4d}] TrainLoss = {train_loss:.4g} '
             f'ValLoss = {val_loss:.4g} TrainTime = {train_time:.4f}s ValTime = {val_time:.4f}s',
         )
+        wandb.log({
+            'train_loss': train_loss.item(),
+            'val_loss': val_loss.item(),
+            'best_val_loss': best_val_loss,
+            'learning_rate': optimizer.param_groups[0]['lr'],
+            'num_subjects': num_subjects.item(),
+        }, step=epoch)
 
         if is_new_best:
             print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@NewRecord@@@@@@@@@@@@@@@@@@@@@@@@@@@@")

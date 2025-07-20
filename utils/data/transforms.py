@@ -55,9 +55,10 @@ class DataTransform:
             else:
                 target_size = [384, 384]  # Default target size
                 
-            augmented_kspace, augmented_target = self.augmentor(full_kspace, target_size)
+            augmented_kspace, augmented_target, augmentation_applied = self.augmentor(full_kspace, target_size)
             
-            if augmented_target is not None:
+            # Only apply augmentation if it was actually applied and target is valid
+            if augmentation_applied and augmented_target is not None:
                 target = augmented_target
                 # Update kspace to the augmented version
                 kspace = augmented_kspace

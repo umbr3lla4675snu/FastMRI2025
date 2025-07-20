@@ -1,0 +1,185 @@
+_wandb:
+    value:
+        cli_version: 0.21.0
+        e:
+            2l1acpso4kvrbt6p13vi7teo9u8p1q6g:
+                args:
+                    - --GPU-NUM=0
+                    - --aug_delay=10
+                    - --aug_max_rotation=10
+                    - --aug_max_shearing_x=5
+                    - --aug_max_shearing_y=2
+                    - --aug_on=True
+                    - --aug_schedule=exp
+                    - --aug_strength=0.3
+                    - --batch-size=1
+                    - --cascade=6
+                    - --chans=13
+                    - --data-path-train=/root/Data/train/
+                    - --data-path-val=/root/Data/val/
+                    - --lr=0.001
+                    - --lr-decay-gamma=0.5
+                    - --lr-decay-step=10
+                    - --lr-scheduler=True
+                    - --net-name=test_Varnet_sweep
+                    - --num-epochs=10
+                    - --report-interval=100
+                    - --seed=146
+                    - --sens_chans=8
+                    - --use-weighted-loss=True
+                codePath: train_varnet.py
+                codePathLocal: train_varnet.py
+                cpu_count: 6
+                cpu_count_logical: 12
+                cudaVersion: "12.4"
+                disk:
+                    /:
+                        total: "502392942592"
+                        used: "360721960960"
+                email: imsmile2004@naver.com
+                executable: /root/FastMRI2025/.venv/bin/python
+                git:
+                    commit: a0bd5a73906857ab2a23fbcc894a8223da7b54dd
+                    remote: https://github.com/umbr3lla4675snu/FastMRI2025.git
+                gpu: NVIDIA GeForce GTX 1080
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Pascal
+                      cudaCores: 2560
+                      memoryTotal: "8589934592"
+                      name: NVIDIA GeForce GTX 1080
+                      uuid: GPU-94db8a28-6d40-423f-f897-ece027e91637
+                host: workspace-q8l4f1biaeom-0
+                memory:
+                    total: "16463249408"
+                os: Linux-6.8.0-55-generic-x86_64-with-glibc2.35
+                program: /root/FastMRI2025/train_varnet.py
+                python: CPython 3.10.12
+                root: /root/FastMRI2025
+                startedAt: "2025-07-14T11:58:52.300699Z"
+                writerId: 2l1acpso4kvrbt6p13vi7teo9u8p1q6g
+        m: []
+        python_version: 3.10.12
+        t:
+            "1":
+                - 1
+                - 41
+            "2":
+                - 1
+                - 41
+            "3":
+                - 1
+                - 13
+                - 14
+            "4": 3.10.12
+            "5": 0.21.0
+            "12": 0.21.0
+            "13": linux-x86_64
+GPU-NUM:
+    value: 0
+GPU_NUM:
+    value: 0
+aug_delay:
+    value: 10
+aug_exp_decay:
+    value: 5
+aug_interpolation_order:
+    value: 1
+aug_max_rotation:
+    value: 10
+aug_max_scaling:
+    value: 0.25
+aug_max_shearing_x:
+    value: 5
+aug_max_shearing_y:
+    value: 2
+aug_max_translation_x:
+    value: 0.06
+aug_max_translation_y:
+    value: 0.06
+aug_on:
+    value: true
+aug_schedule:
+    value: exp
+aug_strength:
+    value: 0.3
+aug_upsample:
+    value: false
+aug_upsample_factor:
+    value: 2
+aug_upsample_order:
+    value: 1
+aug_weight_fliph:
+    value: 1
+aug_weight_flipv:
+    value: 1
+aug_weight_rot90:
+    value: 0
+aug_weight_rotation:
+    value: 1
+aug_weight_scaling:
+    value: 1
+aug_weight_shearing:
+    value: 1
+aug_weight_translation:
+    value: 1
+batch-size:
+    value: 1
+batch_size:
+    value: 1
+cascade:
+    value: 6
+chans:
+    value: 13
+data-path-train:
+    value: /root/Data/train/
+data-path-val:
+    value: /root/Data/val/
+data_path_train:
+    value: /root/Data/train
+data_path_val:
+    value: /root/Data/val
+gradient_checkpoint:
+    value: false
+input_key:
+    value: kspace
+lr:
+    value: 0.001
+lr-decay-gamma:
+    value: 0.5
+lr-decay-step:
+    value: 10
+lr-scheduler:
+    value: true
+lr_decay_gamma:
+    value: 0.5
+lr_decay_step:
+    value: 10
+lr_scheduler:
+    value: true
+max_key:
+    value: max
+max_train_resolution:
+    value: null
+net-name:
+    value: test_Varnet_sweep
+net_name:
+    value: test_Varnet_sweep
+num-epochs:
+    value: 10
+num_epochs:
+    value: 10
+report-interval:
+    value: 100
+report_interval:
+    value: 100
+seed:
+    value: 146
+sens_chans:
+    value: 8
+target_key:
+    value: image_label
+use-weighted-loss:
+    value: true
+use_weighted_loss:
+    value: true

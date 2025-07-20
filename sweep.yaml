@@ -1,0 +1,49 @@
+program: train_varnet.py
+method: grid
+parameters:
+  GPU-NUM:
+    values: [0]
+  batch-size:
+    values: [1]
+  report-interval:
+    values: [100]
+  net-name:
+    values: ["test_Varnet_sweep"]
+  data-path-train:
+    values: ["/root/Data/train/"]
+  data-path-val:
+    values: ["/root/Data/val/"]
+  lr:
+    values: [0.001, 0.0001, 0.00001]
+  num-epochs:
+    values: [10, 20, 30, 40]
+  seed:
+    values: [146, 430, 714]
+  cascade:
+    values: [6, 12]
+  chans:
+    values: [13, 18]
+  sens_chans:
+    values: [5, 8]
+  use-weighted-loss:
+    values: [True, False]
+  lr-scheduler:
+    values: [True, False]
+  lr-decay-step:
+    values: [10, 20]
+  lr-decay-gamma:
+    values: [0.5, 0.75]
+  aug_on:
+    values: [True, False]
+  aug_delay:
+    values: [10, 20]
+  aug_strength:
+    values: [0.3, 0.5]
+  aug_schedule:
+    values: [exp, ramp]
+  aug_max_rotation:
+    values: [10, 20]
+  aug_max_shearing_x:
+    values: [5, 10]
+  aug_max_shearing_y:
+    values: [2, 5]

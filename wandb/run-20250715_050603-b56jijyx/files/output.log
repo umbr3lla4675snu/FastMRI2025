@@ -1,0 +1,50 @@
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'lr' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'cascade' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'chans' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'sens_chans' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'seed' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'aug_on' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'aug_schedule' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'aug_delay' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'aug_strength' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'aug_max_rotation' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'aug_max_shearing_x' was locked by 'sweep' (ignored update).
+[34m[1mwandb[0m: [33mWARNING[0m Config item 'aug_max_shearing_y' was locked by 'sweep' (ignored update).
+Current cuda device:  0
+✓ Data augmentation ENABLED
+  - Augmentation strength: 0.3
+  - Augmentation schedule: exp
+  - Rotation weight: 1.0
+  - Scaling weight: 1.0
+Using standard SSIM Loss
+Learning rate scheduler enabled: StepLR with step_size=10, gamma=0.5
+Epoch # 0 ............... test_Varnet_sweep ...............
+/root/FastMRI2025/utils/model/varnet.py:294: UserWarning: where received a uint8 condition tensor. This behavior is deprecated and will be removed in a future version of PyTorch. Use a boolean condition instead. (Triggered internally at /pytorch/aten/src/ATen/native/TensorCompare.cpp:611.)
+  soft_dc = torch.where(mask, current_kspace - ref_kspace, zero) * self.dc_weight
+Epoch = [  0/ 10] Iter = [   0/4937] Loss = 0.4109 Time = 1.1233s
+Traceback (most recent call last):
+  File "/root/FastMRI2025/train_varnet.py", line 68, in <module>
+    train(args)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 170, in train
+    train_loss, train_time = train_epoch(args, epoch, model, train_loader, optimizer, loss_type)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 34, in train_epoch
+    output = model(kspace, mask)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1857, in _call_impl
+    return inner()
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1805, in inner
+    result = forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/varnet.py", line 251, in forward
+    kspace_pred = cascade(kspace_pred, masked_kspace, mask, sens_maps)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/varnet.py", line 295, in forward
+    model_term = self.sens_expand(
+  File "/root/FastMRI2025/utils/model/varnet.py", line 278, in sens_expand
+    return fastmri.fft2c(fastmri.complex_mul(x, sens_maps))
+  File "/root/FastMRI2025/utils/model/fastmri/math.py", line 30, in complex_mul
+    im = x[..., 0] * y[..., 1] + x[..., 1] * y[..., 0]
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 24.00 MiB. GPU 0 has a total capacity of 7.92 GiB of which 6.69 MiB is free. Process 3387023 has 7.91 GiB memory in use. Of the allocated memory 7.69 GiB is allocated by PyTorch, and 92.68 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

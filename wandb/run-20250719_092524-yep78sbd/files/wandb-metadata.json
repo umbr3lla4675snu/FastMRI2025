@@ -1,0 +1,87 @@
+{
+  "os":  "Linux-6.8.0-55-generic-x86_64-with-glibc2.35",
+  "python":  "CPython 3.10.12",
+  "startedAt":  "2025-07-19T09:25:24.031265Z",
+  "args":  [
+    "-b",
+    "1",
+    "-e",
+    "40",
+    "-l",
+    "0.001",
+    "-r",
+    "100",
+    "-n",
+    "Varnet_40_epoch",
+    "-t",
+    "/root/Data/train/",
+    "-v",
+    "/root/Data/val/",
+    "--cascade",
+    "6",
+    "--chans",
+    "13",
+    "--sens_chans",
+    "5",
+    "--seed",
+    "146",
+    "--use-weighted-loss",
+    "True",
+    "--aug_on",
+    "True",
+    "--aug_delay",
+    "0",
+    "--aug_strength",
+    "0.3",
+    "--aug_schedule",
+    "exp",
+    "--aug_max_rotation",
+    "20.0",
+    "--aug_max_shearing_x",
+    "5.0",
+    "--aug_max_shearing_y",
+    "2.0",
+    "--lr-scheduler",
+    "True",
+    "--lr-decay-step",
+    "10",
+    "--lr-decay-gamma",
+    "0.5",
+    "--gradient-checkpoint"
+  ],
+  "program":  "/root/FastMRI2025/train_varnet.py",
+  "codePath":  "train_varnet.py",
+  "codePathLocal":  "train_varnet.py",
+  "git":  {
+    "remote":  "https://github.com/umbr3lla4675snu/FastMRI2025.git",
+    "commit":  "a0bd5a73906857ab2a23fbcc894a8223da7b54dd"
+  },
+  "email":  "imsmile2004@naver.com",
+  "root":  "/root/FastMRI2025",
+  "host":  "workspace-q8l4f1biaeom-0",
+  "executable":  "/root/FastMRI2025/.venv/bin/python",
+  "cpu_count":  6,
+  "cpu_count_logical":  12,
+  "gpu":  "NVIDIA GeForce GTX 1080",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "502392942592",
+      "used":  "360761839616"
+    }
+  },
+  "memory":  {
+    "total":  "16463249408"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce GTX 1080",
+      "memoryTotal":  "8589934592",
+      "cudaCores":  2560,
+      "architecture":  "Pascal",
+      "uuid":  "GPU-94db8a28-6d40-423f-f897-ece027e91637"
+    }
+  ],
+  "cudaVersion":  "12.4",
+  "writerId":  "rvc0ou6gevirbv654looi0lvicwqbz6q"
+}

@@ -3,6 +3,7 @@ import argparse
 import shutil
 import os, sys
 from pathlib import Path
+import wandb
 
 if os.getcwd() + '/utils/model/' not in sys.path:
     sys.path.insert(1, os.getcwd() + '/utils/model/')
@@ -32,10 +33,11 @@ def parse():
     parser.add_argument('--input-key', type=str, default='kspace', help='Name of input key')
     parser.add_argument('--target-key', type=str, default='image_label', help='Name of target key')
     parser.add_argument('--max-key', type=str, default='max', help='Name of max key in attributes')
-    parser.add_argument('--use-weighted-loss', action='store_true', help='Use index-based weighted SSIM loss')
+    parser.add_argument('--use-weighted-loss', type=lambda x: (str(x).lower() == 'true'), default=False, help='Use index-based weighted SSIM loss. 예: --use-weighted-loss True')
+    parser.add_argument('--lr-scheduler', type=lambda x: (str(x).lower() == 'true'), default=False, help='Use learning rate scheduler. 예: --lr-scheduler True')
+    # aug_on은 DataAugmentor.add_augmentation_specific_args(parser)에서 이미 처리됨
     parser.add_argument('--seed', type=int, default=430, help='Fix random seed')
     parser.add_argument('--gradient-checkpoint', action='store_true', help='Enable gradient checkpointing to save memory')
-    parser.add_argument('--lr-scheduler', action='store_true', help='Use learning rate scheduler')
     parser.add_argument('--lr-decay-step', type=int, default=10, help='Learning rate decay step')
     parser.add_argument('--lr-decay-gamma', type=float, default=0.5, help='Learning rate decay gamma')
 
@@ -47,7 +49,10 @@ def parse():
 
 if __name__ == '__main__':
     args = parse()
-    
+
+    wandb.init(project="FastMRI2025", name=str(args.net_name))
+    wandb.config.update(args)
+
     # fix seed
     if args.seed is not None:
         seed_fix(args.seed)

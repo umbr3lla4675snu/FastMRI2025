@@ -1,0 +1,13 @@
+{"time":"2025-07-15T05:06:19.771526113Z","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-15T05:06:20.114678743Z","level":"INFO","msg":"stream: created new stream","id":"minkwv4g"}
+{"time":"2025-07-15T05:06:20.114751676Z","level":"INFO","msg":"stream: started","id":"minkwv4g"}
+{"time":"2025-07-15T05:06:20.114823124Z","level":"INFO","msg":"writer: Do: started","stream_id":"minkwv4g"}
+{"time":"2025-07-15T05:06:20.114875065Z","level":"INFO","msg":"handler: started","stream_id":"minkwv4g"}
+{"time":"2025-07-15T05:06:20.114946497Z","level":"INFO","msg":"sender: started","stream_id":"minkwv4g"}
+{"time":"2025-07-15T17:04:50.904385558Z","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/kplee04-seoul-national-university/FastMRI2025/minkwv4g/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-07-15T18:46:45.065037653Z","level":"INFO","msg":"stream: closing","id":"minkwv4g"}
+{"time":"2025-07-15T18:46:46.470075447Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-15T18:46:47.663525955Z","level":"INFO","msg":"handler: closed","stream_id":"minkwv4g"}
+{"time":"2025-07-15T18:46:47.663623583Z","level":"INFO","msg":"writer: Close: closed","stream_id":"minkwv4g"}
+{"time":"2025-07-15T18:46:47.663709443Z","level":"INFO","msg":"sender: closed","stream_id":"minkwv4g"}
+{"time":"2025-07-15T18:46:47.663799674Z","level":"INFO","msg":"stream: closed","id":"minkwv4g"}

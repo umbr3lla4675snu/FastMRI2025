@@ -1,0 +1,48 @@
+wandb_version: 1
+
+GPU-NUM:
+  value: 0
+aug_delay:
+  value: 10
+aug_max_rotation:
+  value: 10
+aug_max_shearing_x:
+  value: 5
+aug_max_shearing_y:
+  value: 2
+aug_on:
+  value: true
+aug_schedule:
+  value: exp
+aug_strength:
+  value: 0.3
+batch-size:
+  value: 1
+cascade:
+  value: 6
+chans:
+  value: 13
+data-path-train:
+  value: /root/Data/train/
+data-path-val:
+  value: /root/Data/val/
+lr:
+  value: 0.001
+lr-decay-gamma:
+  value: 0.5
+lr-decay-step:
+  value: 10
+lr-scheduler:
+  value: true
+net-name:
+  value: test_Varnet_sweep
+num-epochs:
+  value: 10
+report-interval:
+  value: 100
+seed:
+  value: 146
+sens_chans:
+  value: 8
+use-weighted-loss:
+  value: true

@@ -1,0 +1,12 @@
+{"time":"2025-07-16T22:08:00.100721871Z","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-16T22:08:00.44465369Z","level":"INFO","msg":"stream: created new stream","id":"ehz65onq"}
+{"time":"2025-07-16T22:08:00.444803448Z","level":"INFO","msg":"handler: started","stream_id":"ehz65onq"}
+{"time":"2025-07-16T22:08:00.444891156Z","level":"INFO","msg":"sender: started","stream_id":"ehz65onq"}
+{"time":"2025-07-16T22:08:00.445000496Z","level":"INFO","msg":"stream: started","id":"ehz65onq"}
+{"time":"2025-07-16T22:08:00.444960413Z","level":"INFO","msg":"writer: Do: started","stream_id":"ehz65onq"}
+{"time":"2025-07-17T11:49:09.151024523Z","level":"INFO","msg":"stream: closing","id":"ehz65onq"}
+{"time":"2025-07-17T11:49:10.552624763Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-07-17T11:49:11.520519427Z","level":"INFO","msg":"handler: closed","stream_id":"ehz65onq"}
+{"time":"2025-07-17T11:49:11.520607485Z","level":"INFO","msg":"writer: Close: closed","stream_id":"ehz65onq"}
+{"time":"2025-07-17T11:49:11.520640376Z","level":"INFO","msg":"sender: closed","stream_id":"ehz65onq"}
+{"time":"2025-07-17T11:49:11.520815034Z","level":"INFO","msg":"stream: closed","id":"ehz65onq"}
