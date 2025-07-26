@@ -1,0 +1,98 @@
+Current cuda device:  0
+Gradient checkpointing enabled - this will save memory but may slow down training
+✓ Data augmentation ENABLED
+  - Augmentation strength: 0.05
+  - Augmentation schedule: ramp
+  - Rotation weight: 1.0
+  - Scaling weight: 1.0
+Using Weighted SSIM Loss with index-based weighting
+Learning rate scheduler enabled: StepLR with step_size=10, gamma=0.5
+Epoch # 0 ............... Varnet_40_epoch ...............
+/root/FastMRI2025/utils/model/varnet.py:294: UserWarning: where received a uint8 condition tensor. This behavior is deprecated and will be removed in a future version of PyTorch. Use a boolean condition instead. (Triggered internally at /pytorch/aten/src/ATen/native/TensorCompare.cpp:611.)
+  soft_dc = torch.where(mask, current_kspace - ref_kspace, zero) * self.dc_weight
+Epoch = [  0/ 40] Iter = [   0/4937] Loss = 0.02014 Time = 0.8102s
+Epoch = [  0/ 40] Iter = [ 100/4937] Loss = 0.3106 Time = 42.6306s
+Epoch = [  0/ 40] Iter = [ 200/4937] Loss = 0.09979 Time = 41.0742s
+Epoch = [  0/ 40] Iter = [ 300/4937] Loss = 0.1287 Time = 43.5208s
+Epoch = [  0/ 40] Iter = [ 400/4937] Loss = 0.0136 Time = 39.0634s
+Epoch = [  0/ 40] Iter = [ 500/4937] Loss = 0.1954 Time = 42.2704s
+Epoch = [  0/ 40] Iter = [ 600/4937] Loss = 0.1692 Time = 42.3052s
+Epoch = [  0/ 40] Iter = [ 700/4937] Loss = 0.04463 Time = 40.9487s
+Epoch = [  0/ 40] Iter = [ 800/4937] Loss = 0.01461 Time = 40.6208s
+Epoch = [  0/ 40] Iter = [ 900/4937] Loss = 0.109 Time = 40.3748s
+Epoch = [  0/ 40] Iter = [1000/4937] Loss = 0.06318 Time = 40.1314s
+Epoch = [  0/ 40] Iter = [1100/4937] Loss = 0.05578 Time = 41.1752s
+Epoch = [  0/ 40] Iter = [1200/4937] Loss = 3.016e-16 Time = 40.7898s
+Epoch = [  0/ 40] Iter = [1300/4937] Loss = 0.2419 Time = 39.1202s
+Epoch = [  0/ 40] Iter = [1400/4937] Loss = 0.1241 Time = 42.0251s
+Epoch = [  0/ 40] Iter = [1500/4937] Loss = 0.1008 Time = 41.9629s
+Epoch = [  0/ 40] Iter = [1600/4937] Loss = 0.04288 Time = 40.9064s
+Epoch = [  0/ 40] Iter = [1700/4937] Loss = 0.001091 Time = 41.6481s
+Epoch = [  0/ 40] Iter = [1800/4937] Loss = 0.1886 Time = 40.8043s
+Epoch = [  0/ 40] Iter = [1900/4937] Loss = 0.0651 Time = 42.6719s
+Epoch = [  0/ 40] Iter = [2000/4937] Loss = 0.2724 Time = 40.7245s
+Epoch = [  0/ 40] Iter = [2100/4937] Loss = 0.1388 Time = 40.8820s
+Epoch = [  0/ 40] Iter = [2200/4937] Loss = 0.0131 Time = 40.5329s
+Epoch = [  0/ 40] Iter = [2300/4937] Loss = 0.1178 Time = 39.6861s
+Epoch = [  0/ 40] Iter = [2400/4937] Loss = 0.02197 Time = 40.7261s
+Epoch = [  0/ 40] Iter = [2500/4937] Loss = 0.06519 Time = 40.0046s
+Epoch = [  0/ 40] Iter = [2600/4937] Loss = 0.0151 Time = 42.4692s
+Epoch = [  0/ 40] Iter = [2700/4937] Loss = 2.811e-16 Time = 42.0318s
+Epoch = [  0/ 40] Iter = [2800/4937] Loss = 0.001087 Time = 41.0569s
+Epoch = [  0/ 40] Iter = [2900/4937] Loss = 0.06078 Time = 41.8013s
+Epoch = [  0/ 40] Iter = [3000/4937] Loss = 0.04852 Time = 40.0304s
+Epoch = [  0/ 40] Iter = [3100/4937] Loss = 0.09201 Time = 43.3963s
+Epoch = [  0/ 40] Iter = [3200/4937] Loss = 0.0688 Time = 40.9234s
+Epoch = [  0/ 40] Iter = [3300/4937] Loss = 0.07353 Time = 40.8921s
+Epoch = [  0/ 40] Iter = [3400/4937] Loss = 0.05392 Time = 40.8162s
+Epoch = [  0/ 40] Iter = [3500/4937] Loss = 0.09541 Time = 41.7274s
+Epoch = [  0/ 40] Iter = [3600/4937] Loss = 0.1585 Time = 40.7538s
+Epoch = [  0/ 40] Iter = [3700/4937] Loss = 0.182 Time = 41.9173s
+Epoch = [  0/ 40] Iter = [3800/4937] Loss = 0.009306 Time = 41.3216s
+Epoch = [  0/ 40] Iter = [3900/4937] Loss = 0.005142 Time = 41.5221s
+Epoch = [  0/ 40] Iter = [4000/4937] Loss = 0.002556 Time = 39.5247s
+Epoch = [  0/ 40] Iter = [4100/4937] Loss = 0.02642 Time = 39.8755s
+Epoch = [  0/ 40] Iter = [4200/4937] Loss = 0.03874 Time = 41.3629s
+Epoch = [  0/ 40] Iter = [4300/4937] Loss = 0.1199 Time = 41.2344s
+Epoch = [  0/ 40] Iter = [4400/4937] Loss = 0.06039 Time = 41.1336s
+Epoch = [  0/ 40] Iter = [4500/4937] Loss = 9.684e-17 Time = 39.1191s
+Epoch = [  0/ 40] Iter = [4600/4937] Loss = 0.05575 Time = 41.4665s
+Epoch = [  0/ 40] Iter = [4700/4937] Loss = 0.01302 Time = 42.8941s
+Epoch = [  0/ 40] Iter = [4800/4937] Loss = 0.1183 Time = 43.4014s
+Epoch = [  0/ 40] Iter = [4900/4937] Loss = 0.1008 Time = 41.0052s
+loss file saved! ../result/Varnet_40_epoch/val_loss_log
+Epoch = [   0/  40] TrainLoss = 0.07172 ValLoss = 0.1467 TrainTime = 2033.4186s ValTime = 160.3910s
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@NewRecord@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ForwardTime = 8.5302s
+Epoch # 1 ............... Varnet_40_epoch ...............
+Epoch = [  1/ 40] Iter = [   0/4937] Loss = 0.01037 Time = 1.3162s
+Epoch = [  1/ 40] Iter = [ 100/4937] Loss = 0.002785 Time = 41.5278s
+Epoch = [  1/ 40] Iter = [ 200/4937] Loss = 0.003063 Time = 41.4877s
+Traceback (most recent call last):
+  File "/root/FastMRI2025/train_varnet.py", line 68, in <module>
+    train(args)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 177, in train
+    train_loss, train_time = train_epoch(args, epoch, model, train_loader, optimizer, loss_type)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 34, in train_epoch
+    output = model(kspace, mask)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1857, in _call_impl
+    return inner()
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1805, in inner
+    result = forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/varnet.py", line 249, in forward
+    kspace_pred = checkpoint(cascade, kspace_pred, masked_kspace, mask, sens_maps, use_reentrant=False)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/_compile.py", line 51, in inner
+    return disable_fn(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 838, in _fn
+    return fn(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/checkpoint.py", line 495, in checkpoint
+    ret = function(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/varnet.py", line 293, in forward
+    zero = torch.zeros(1, 1, 1, 1, 1).to(current_kspace)
+KeyboardInterrupt

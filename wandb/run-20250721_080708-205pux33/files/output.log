@@ -1,0 +1,72 @@
+Current cuda device:  0
+Gradient checkpointing enabled - this will save memory but may slow down training
+✓ Data augmentation ENABLED
+  - Augmentation strength: 0.05
+  - Augmentation schedule: ramp
+  - Rotation weight: 1.0
+  - Scaling weight: 1.0
+Using Weighted SSIM Loss with index-based weighting
+Learning rate scheduler enabled: StepLR with step_size=10, gamma=0.5
+Epoch # 0 ............... Varnet_40_epoch ...............
+/root/FastMRI2025/utils/model/varnet.py:294: UserWarning: where received a uint8 condition tensor. This behavior is deprecated and will be removed in a future version of PyTorch. Use a boolean condition instead. (Triggered internally at /pytorch/aten/src/ATen/native/TensorCompare.cpp:611.)
+  soft_dc = torch.where(mask, current_kspace - ref_kspace, zero) * self.dc_weight
+Epoch = [  0/ 40] Iter = [   0/4937] Loss = 0.2318 Time = 1.2089s
+Epoch = [  0/ 40] Iter = [ 100/4937] Loss = 0.0068 Time = 107.0502s
+Traceback (most recent call last):
+  File "/root/FastMRI2025/train_varnet.py", line 68, in <module>
+    train(args)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 177, in train
+    train_loss, train_time = train_epoch(args, epoch, model, train_loader, optimizer, loss_type)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 34, in train_epoch
+    output = model(kspace, mask)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1857, in _call_impl
+    return inner()
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1805, in inner
+    result = forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/varnet.py", line 249, in forward
+    kspace_pred = checkpoint(cascade, kspace_pred, masked_kspace, mask, sens_maps, use_reentrant=False)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/_compile.py", line 51, in inner
+    return disable_fn(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 838, in _fn
+    return fn(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/checkpoint.py", line 495, in checkpoint
+    ret = function(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/varnet.py", line 296, in forward
+    self.model(self.sens_reduce(current_kspace, sens_maps)), sens_maps
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/varnet.py", line 120, in forward
+    x = self.unet(x)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/unet.py", line 89, in forward
+    output = transpose_conv(output)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/unet.py", line 185, in forward
+    return self.layers(image)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/container.py", line 240, in forward
+    input = module(input)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/conv.py", line 1162, in forward
+    return F.conv_transpose2d(
+KeyboardInterrupt

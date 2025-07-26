@@ -1,0 +1,27 @@
+Current cuda device:  0
+Gradient checkpointing enabled - this will save memory but may slow down training
+✓ Data augmentation ENABLED
+  - Augmentation strength: 0.05
+  - Augmentation schedule: ramp
+  - Rotation weight: 1.0
+  - Scaling weight: 1.0
+Using Weighted SSIM Loss with index-based weighting
+Learning rate scheduler enabled: StepLR with step_size=10, gamma=0.5
+Epoch # 0 ............... Varnet_40_epoch ...............
+/root/FastMRI2025/utils/model/varnet.py:294: UserWarning: where received a uint8 condition tensor. This behavior is deprecated and will be removed in a future version of PyTorch. Use a boolean condition instead. (Triggered internally at /pytorch/aten/src/ATen/native/TensorCompare.cpp:611.)
+  soft_dc = torch.where(mask, current_kspace - ref_kspace, zero) * self.dc_weight
+Epoch = [  0/ 40] Iter = [   0/4937] Loss = 0.2962 Time = 4.0444s
+Traceback (most recent call last):
+  File "/root/FastMRI2025/train_varnet.py", line 68, in <module>
+    train(args)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 177, in train
+    train_loss, train_time = train_epoch(args, epoch, model, train_loader, optimizer, loss_type)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 50, in train_epoch
+    loss.backward()
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/_tensor.py", line 648, in backward
+    torch.autograd.backward(
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/autograd/__init__.py", line 353, in backward
+    _engine_run_backward(
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

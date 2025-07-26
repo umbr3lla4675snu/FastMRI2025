@@ -1,0 +1,9 @@
+{"time":"2025-07-24T19:36:17.77845501Z","level":"INFO","msg":"stream: starting","core version":"0.21.0"}
+{"time":"2025-07-24T19:36:18.258866238Z","level":"INFO","msg":"stream: created new stream","id":"nak9u9ma"}
+{"time":"2025-07-24T19:36:18.25894515Z","level":"INFO","msg":"stream: started","id":"nak9u9ma"}
+{"time":"2025-07-24T19:36:18.259099687Z","level":"INFO","msg":"writer: Do: started","stream_id":"nak9u9ma"}
+{"time":"2025-07-24T19:36:18.259116652Z","level":"INFO","msg":"handler: started","stream_id":"nak9u9ma"}
+{"time":"2025-07-24T19:36:18.25922042Z","level":"INFO","msg":"sender: started","stream_id":"nak9u9ma"}
+{"time":"2025-07-24T22:33:04.1923808Z","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/kplee04-seoul-national-university/FastMRI2025/nak9u9ma/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-07-24T22:37:03.789534533Z","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/kplee04-seoul-national-university/FastMRI2025/nak9u9ma/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}
+{"time":"2025-07-25T06:37:19.093689019Z","level":"INFO","msg":"api: retrying error","error":"Post \"https://api.wandb.ai/graphql\": context deadline exceeded"}

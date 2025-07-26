@@ -3,21 +3,22 @@ python train_varnet.py \
   -e 40 \
   -l 0.001 \
   -r 100 \
-  -n 'Varnet_40_epoch' \
+  -n 'Varnet_40_epoch_with_augmentation' \
   -t '/root/Data/train/' \
   -v '/root/Data/val/' \
   --cascade 6 \
   --chans 13 \
   --sens_chans 5 \
-  --seed 146 \
+  --seed 150 \
   --use-weighted-loss "True"\
   --aug_on "True" \
   --aug_delay 10 \
-  --aug_strength 0.3 \
-  --aug_schedule exp \
-  --aug_max_rotation 20.0 \
-  --aug_max_shearing_x 5.0 \
-  --aug_max_shearing_y 2.0 \
+  --aug_strength 0.02 \
+  --aug_schedule 'exp' \
+  --aug_max_rotation 2.0 \
+  --aug_max_scaling 0.05 \
+  --aug_max_shearing_x 1.0 \
+  --aug_max_shearing_y 1.0 \
   --lr-scheduler "True" \
   --lr-decay-step 10 \
   --lr-decay-gamma 0.5 \

@@ -1,0 +1,491 @@
+Current cuda device:  0
+Gradient checkpointing enabled - this will save memory but may slow down training
+✓ Data augmentation ENABLED
+  - Augmentation strength: 0.05
+  - Augmentation schedule: ramp
+  - Rotation weight: 1.0
+  - Scaling weight: 1.0
+Using Weighted SSIM Loss with index-based weighting
+Learning rate scheduler enabled: StepLR with step_size=10, gamma=0.5
+Epoch # 0 ............... Varnet_40_epoch ...............
+/root/FastMRI2025/utils/model/varnet.py:294: UserWarning: where received a uint8 condition tensor. This behavior is deprecated and will be removed in a future version of PyTorch. Use a boolean condition instead. (Triggered internally at /pytorch/aten/src/ATen/native/TensorCompare.cpp:611.)
+  soft_dc = torch.where(mask, current_kspace - ref_kspace, zero) * self.dc_weight
+Epoch = [  0/ 40] Iter = [   0/4937] Loss = 0.2318 Time = 1.2599s
+Epoch = [  0/ 40] Iter = [ 100/4937] Loss = 0.0068 Time = 111.4627s
+Epoch = [  0/ 40] Iter = [ 200/4937] Loss = 0.06934 Time = 112.2436s
+Epoch = [  0/ 40] Iter = [ 300/4937] Loss = 0.1325 Time = 109.6566s
+Epoch = [  0/ 40] Iter = [ 400/4937] Loss = 0.05216 Time = 108.2266s
+Epoch = [  0/ 40] Iter = [ 500/4937] Loss = 0.0121 Time = 110.9536s
+Epoch = [  0/ 40] Iter = [ 600/4937] Loss = 0.003661 Time = 110.6818s
+Epoch = [  0/ 40] Iter = [ 700/4937] Loss = 0.00164 Time = 108.1378s
+Epoch = [  0/ 40] Iter = [ 800/4937] Loss = 0.02053 Time = 112.9699s
+Epoch = [  0/ 40] Iter = [ 900/4937] Loss = 0.01098 Time = 108.0178s
+Epoch = [  0/ 40] Iter = [1000/4937] Loss = 0.125 Time = 109.6541s
+Epoch = [  0/ 40] Iter = [1100/4937] Loss = 0.008328 Time = 111.7935s
+Epoch = [  0/ 40] Iter = [1200/4937] Loss = 0.1286 Time = 107.7919s
+Epoch = [  0/ 40] Iter = [1300/4937] Loss = 0.003145 Time = 108.3012s
+Epoch = [  0/ 40] Iter = [1400/4937] Loss = 0.03816 Time = 107.2138s
+Epoch = [  0/ 40] Iter = [1500/4937] Loss = 0.01208 Time = 112.5099s
+Epoch = [  0/ 40] Iter = [1600/4937] Loss = 0.06168 Time = 111.0375s
+Epoch = [  0/ 40] Iter = [1700/4937] Loss = 0.0633 Time = 113.3083s
+Epoch = [  0/ 40] Iter = [1800/4937] Loss = 0.07036 Time = 113.8747s
+Epoch = [  0/ 40] Iter = [1900/4937] Loss = 0.04713 Time = 105.6880s
+Epoch = [  0/ 40] Iter = [2000/4937] Loss = 3.818e-16 Time = 113.0590s
+Epoch = [  0/ 40] Iter = [2100/4937] Loss = 0.07072 Time = 112.0468s
+Epoch = [  0/ 40] Iter = [2200/4937] Loss = 0.0007156 Time = 108.8464s
+Epoch = [  0/ 40] Iter = [2300/4937] Loss = 0.04901 Time = 110.0030s
+Epoch = [  0/ 40] Iter = [2400/4937] Loss = 0.003004 Time = 114.4790s
+Epoch = [  0/ 40] Iter = [2500/4937] Loss = 0.05384 Time = 113.3679s
+Epoch = [  0/ 40] Iter = [2600/4937] Loss = 0.03049 Time = 109.4678s
+Epoch = [  0/ 40] Iter = [2700/4937] Loss = 0.03165 Time = 118.1637s
+Epoch = [  0/ 40] Iter = [2800/4937] Loss = 0.03578 Time = 110.6451s
+Epoch = [  0/ 40] Iter = [2900/4937] Loss = 0.02478 Time = 113.3460s
+Epoch = [  0/ 40] Iter = [3000/4937] Loss = 0.08199 Time = 112.4420s
+Epoch = [  0/ 40] Iter = [3100/4937] Loss = 0.02588 Time = 111.4613s
+Epoch = [  0/ 40] Iter = [3200/4937] Loss = 0.01235 Time = 108.2782s
+Epoch = [  0/ 40] Iter = [3300/4937] Loss = 0.0007668 Time = 108.0681s
+Epoch = [  0/ 40] Iter = [3400/4937] Loss = 0.002543 Time = 112.3869s
+Epoch = [  0/ 40] Iter = [3500/4937] Loss = 0.08466 Time = 112.1753s
+Epoch = [  0/ 40] Iter = [3600/4937] Loss = 0.02076 Time = 110.6783s
+Epoch = [  0/ 40] Iter = [3700/4937] Loss = 0.01863 Time = 110.9154s
+Epoch = [  0/ 40] Iter = [3800/4937] Loss = 0.02607 Time = 114.9301s
+Epoch = [  0/ 40] Iter = [3900/4937] Loss = 0.03132 Time = 111.4846s
+Epoch = [  0/ 40] Iter = [4000/4937] Loss = 0.04557 Time = 106.9465s
+Epoch = [  0/ 40] Iter = [4100/4937] Loss = 0.07748 Time = 110.1558s
+Epoch = [  0/ 40] Iter = [4200/4937] Loss = 0.05564 Time = 109.8652s
+Epoch = [  0/ 40] Iter = [4300/4937] Loss = 0.04407 Time = 111.8075s
+Epoch = [  0/ 40] Iter = [4400/4937] Loss = 0.02766 Time = 108.6278s
+Epoch = [  0/ 40] Iter = [4500/4937] Loss = 0.05797 Time = 108.6546s
+Epoch = [  0/ 40] Iter = [4600/4937] Loss = 0.1122 Time = 111.2623s
+Epoch = [  0/ 40] Iter = [4700/4937] Loss = 0.09853 Time = 111.2318s
+Epoch = [  0/ 40] Iter = [4800/4937] Loss = 0.005487 Time = 112.3373s
+Epoch = [  0/ 40] Iter = [4900/4937] Loss = 0.03896 Time = 110.3801s
+loss file saved! ../result/Varnet_40_epoch/val_loss_log
+Epoch = [   0/  40] TrainLoss = 0.05036 ValLoss = 0.1115 TrainTime = 5470.9168s ValTime = 308.4921s
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@NewRecord@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ForwardTime = 7.2799s
+Epoch # 1 ............... Varnet_40_epoch ...............
+Epoch = [  1/ 40] Iter = [   0/4937] Loss = 0.04512 Time = 1.4439s
+Epoch = [  1/ 40] Iter = [ 100/4937] Loss = 0.09269 Time = 108.1833s
+Epoch = [  1/ 40] Iter = [ 200/4937] Loss = 0.08043 Time = 110.5937s
+Epoch = [  1/ 40] Iter = [ 300/4937] Loss = 0.04422 Time = 110.2746s
+Epoch = [  1/ 40] Iter = [ 400/4937] Loss = 0.002979 Time = 106.8273s
+Epoch = [  1/ 40] Iter = [ 500/4937] Loss = 0.001568 Time = 106.7111s
+Epoch = [  1/ 40] Iter = [ 600/4937] Loss = 5.053e-16 Time = 110.2511s
+Epoch = [  1/ 40] Iter = [ 700/4937] Loss = 0.01369 Time = 109.1650s
+Epoch = [  1/ 40] Iter = [ 800/4937] Loss = 0.085 Time = 111.5916s
+Epoch = [  1/ 40] Iter = [ 900/4937] Loss = 0.002206 Time = 107.8498s
+Epoch = [  1/ 40] Iter = [1000/4937] Loss = 0.0978 Time = 107.8335s
+Epoch = [  1/ 40] Iter = [1100/4937] Loss = 0.08251 Time = 113.4527s
+Epoch = [  1/ 40] Iter = [1200/4937] Loss = 0.06177 Time = 107.3680s
+Epoch = [  1/ 40] Iter = [1300/4937] Loss = 0.09038 Time = 109.1782s
+Epoch = [  1/ 40] Iter = [1400/4937] Loss = 0.03587 Time = 109.6429s
+Epoch = [  1/ 40] Iter = [1500/4937] Loss = 0.0123 Time = 109.4103s
+Epoch = [  1/ 40] Iter = [1600/4937] Loss = 0.01611 Time = 107.1271s
+Epoch = [  1/ 40] Iter = [1700/4937] Loss = 3.384e-16 Time = 103.7794s
+Epoch = [  1/ 40] Iter = [1800/4937] Loss = 0.004879 Time = 106.7261s
+Epoch = [  1/ 40] Iter = [1900/4937] Loss = 0.05219 Time = 107.2596s
+Epoch = [  1/ 40] Iter = [2000/4937] Loss = 0.04821 Time = 109.5039s
+Epoch = [  1/ 40] Iter = [2100/4937] Loss = 0.01475 Time = 111.1967s
+Epoch = [  1/ 40] Iter = [2200/4937] Loss = 0.02375 Time = 107.1215s
+Epoch = [  1/ 40] Iter = [2300/4937] Loss = 0.0511 Time = 110.6618s
+Epoch = [  1/ 40] Iter = [2400/4937] Loss = 0.01299 Time = 111.6672s
+Epoch = [  1/ 40] Iter = [2500/4937] Loss = 0.004811 Time = 110.6385s
+Epoch = [  1/ 40] Iter = [2600/4937] Loss = 0.0107 Time = 109.6857s
+Epoch = [  1/ 40] Iter = [2700/4937] Loss = 0.01367 Time = 108.1149s
+Epoch = [  1/ 40] Iter = [2800/4937] Loss = 0.03676 Time = 111.6199s
+Epoch = [  1/ 40] Iter = [2900/4937] Loss = 0.02398 Time = 110.9456s
+Epoch = [  1/ 40] Iter = [3000/4937] Loss = 0.05833 Time = 111.2943s
+Epoch = [  1/ 40] Iter = [3100/4937] Loss = 0.007904 Time = 109.9430s
+Epoch = [  1/ 40] Iter = [3200/4937] Loss = 0.02367 Time = 107.4971s
+Epoch = [  1/ 40] Iter = [3300/4937] Loss = 0.05059 Time = 112.7599s
+Epoch = [  1/ 40] Iter = [3400/4937] Loss = 0.006572 Time = 108.9032s
+Epoch = [  1/ 40] Iter = [3500/4937] Loss = 0.009117 Time = 110.0007s
+Epoch = [  1/ 40] Iter = [3600/4937] Loss = 0.03137 Time = 107.2112s
+Epoch = [  1/ 40] Iter = [3700/4937] Loss = 0.001763 Time = 106.4843s
+Epoch = [  1/ 40] Iter = [3800/4937] Loss = 0.07579 Time = 106.0905s
+Epoch = [  1/ 40] Iter = [3900/4937] Loss = 0.05094 Time = 109.9002s
+Epoch = [  1/ 40] Iter = [4000/4937] Loss = 1.101e-16 Time = 112.7677s
+Epoch = [  1/ 40] Iter = [4100/4937] Loss = 0.03179 Time = 111.8637s
+Epoch = [  1/ 40] Iter = [4200/4937] Loss = 0.08942 Time = 109.0765s
+Epoch = [  1/ 40] Iter = [4300/4937] Loss = 3.858e-16 Time = 109.0873s
+Epoch = [  1/ 40] Iter = [4400/4937] Loss = 2.329e-16 Time = 107.7995s
+Epoch = [  1/ 40] Iter = [4500/4937] Loss = 0.09712 Time = 110.1292s
+Epoch = [  1/ 40] Iter = [4600/4937] Loss = 0.02016 Time = 106.3434s
+Epoch = [  1/ 40] Iter = [4700/4937] Loss = 0.03162 Time = 112.2035s
+Epoch = [  1/ 40] Iter = [4800/4937] Loss = 0.02609 Time = 113.7883s
+Epoch = [  1/ 40] Iter = [4900/4937] Loss = 0.009846 Time = 107.8506s
+loss file saved! ../result/Varnet_40_epoch/val_loss_log
+Epoch = [   1/  40] TrainLoss = 0.03898 ValLoss = 0.1024 TrainTime = 5395.0591s ValTime = 295.6405s
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@NewRecord@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ForwardTime = 7.1507s
+Epoch # 2 ............... Varnet_40_epoch ...............
+Epoch = [  2/ 40] Iter = [   0/4937] Loss = 0.005433 Time = 0.9277s
+Epoch = [  2/ 40] Iter = [ 100/4937] Loss = 0.03393 Time = 106.5554s
+Epoch = [  2/ 40] Iter = [ 200/4937] Loss = 0.2235 Time = 107.3786s
+Epoch = [  2/ 40] Iter = [ 300/4937] Loss = 0.1518 Time = 110.8587s
+Epoch = [  2/ 40] Iter = [ 400/4937] Loss = 1.901e-16 Time = 110.6466s
+Epoch = [  2/ 40] Iter = [ 500/4937] Loss = 0.05159 Time = 110.5965s
+Epoch = [  2/ 40] Iter = [ 600/4937] Loss = 0.03993 Time = 108.6725s
+Epoch = [  2/ 40] Iter = [ 700/4937] Loss = 0.01658 Time = 107.6595s
+Epoch = [  2/ 40] Iter = [ 800/4937] Loss = 0.07066 Time = 112.8392s
+Epoch = [  2/ 40] Iter = [ 900/4937] Loss = 0.07156 Time = 111.3408s
+Epoch = [  2/ 40] Iter = [1000/4937] Loss = 0.04571 Time = 106.1656s
+Epoch = [  2/ 40] Iter = [1100/4937] Loss = 0.02953 Time = 111.1840s
+Epoch = [  2/ 40] Iter = [1200/4937] Loss = 0.007628 Time = 109.9485s
+Epoch = [  2/ 40] Iter = [1300/4937] Loss = 0.06614 Time = 109.9026s
+Epoch = [  2/ 40] Iter = [1400/4937] Loss = 0.03301 Time = 108.1741s
+Epoch = [  2/ 40] Iter = [1500/4937] Loss = 0.01332 Time = 106.3276s
+Epoch = [  2/ 40] Iter = [1600/4937] Loss = 0.1974 Time = 111.7566s
+Epoch = [  2/ 40] Iter = [1700/4937] Loss = 0.002791 Time = 107.5331s
+Epoch = [  2/ 40] Iter = [1800/4937] Loss = 0.04782 Time = 111.0506s
+Epoch = [  2/ 40] Iter = [1900/4937] Loss = 0.03729 Time = 108.1971s
+Epoch = [  2/ 40] Iter = [2000/4937] Loss = 0.0518 Time = 107.0656s
+Epoch = [  2/ 40] Iter = [2100/4937] Loss = 0.04647 Time = 109.7412s
+Epoch = [  2/ 40] Iter = [2200/4937] Loss = 0.00367 Time = 108.2763s
+Epoch = [  2/ 40] Iter = [2300/4937] Loss = 0.02646 Time = 111.1415s
+Epoch = [  2/ 40] Iter = [2400/4937] Loss = 0.03218 Time = 109.0751s
+Epoch = [  2/ 40] Iter = [2500/4937] Loss = 0.07429 Time = 104.1452s
+Epoch = [  2/ 40] Iter = [2600/4937] Loss = 0.02671 Time = 108.3135s
+Epoch = [  2/ 40] Iter = [2700/4937] Loss = 0.002205 Time = 112.6440s
+Epoch = [  2/ 40] Iter = [2800/4937] Loss = 0.03993 Time = 111.3393s
+Epoch = [  2/ 40] Iter = [2900/4937] Loss = 0.04038 Time = 106.5712s
+Epoch = [  2/ 40] Iter = [3000/4937] Loss = 0.01987 Time = 109.3641s
+Epoch = [  2/ 40] Iter = [3100/4937] Loss = 0.06141 Time = 108.9001s
+Epoch = [  2/ 40] Iter = [3200/4937] Loss = 0.07026 Time = 110.8830s
+Epoch = [  2/ 40] Iter = [3300/4937] Loss = 0.03005 Time = 111.8301s
+Epoch = [  2/ 40] Iter = [3400/4937] Loss = 0.01459 Time = 110.3775s
+Epoch = [  2/ 40] Iter = [3500/4937] Loss = 0.07071 Time = 111.0898s
+Epoch = [  2/ 40] Iter = [3600/4937] Loss = 0.001709 Time = 109.1687s
+Epoch = [  2/ 40] Iter = [3700/4937] Loss = 0.00688 Time = 107.5031s
+Epoch = [  2/ 40] Iter = [3800/4937] Loss = 0.03355 Time = 110.0309s
+Epoch = [  2/ 40] Iter = [3900/4937] Loss = 0.04577 Time = 111.7679s
+Epoch = [  2/ 40] Iter = [4000/4937] Loss = 0.02656 Time = 112.2949s
+Epoch = [  2/ 40] Iter = [4100/4937] Loss = 0.03226 Time = 108.9568s
+Epoch = [  2/ 40] Iter = [4200/4937] Loss = 0.0706 Time = 111.6928s
+Epoch = [  2/ 40] Iter = [4300/4937] Loss = 0.02251 Time = 107.2345s
+Epoch = [  2/ 40] Iter = [4400/4937] Loss = 0.0005137 Time = 108.2018s
+Epoch = [  2/ 40] Iter = [4500/4937] Loss = 0.04205 Time = 110.6173s
+Epoch = [  2/ 40] Iter = [4600/4937] Loss = 0.05555 Time = 104.6068s
+Epoch = [  2/ 40] Iter = [4700/4937] Loss = 0.04376 Time = 109.5030s
+Epoch = [  2/ 40] Iter = [4800/4937] Loss = 0.06308 Time = 107.9727s
+Epoch = [  2/ 40] Iter = [4900/4937] Loss = 0.02516 Time = 111.6367s
+loss file saved! ../result/Varnet_40_epoch/val_loss_log
+Epoch = [   2/  40] TrainLoss = 0.03651 ValLoss = 0.1008 TrainTime = 5397.6610s ValTime = 295.4922s
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@NewRecord@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ForwardTime = 7.0648s
+Epoch # 3 ............... Varnet_40_epoch ...............
+Epoch = [  3/ 40] Iter = [   0/4937] Loss = 0.07358 Time = 1.2530s
+Epoch = [  3/ 40] Iter = [ 100/4937] Loss = 0.02825 Time = 112.2339s
+Epoch = [  3/ 40] Iter = [ 200/4937] Loss = 0.005398 Time = 111.3672s
+Epoch = [  3/ 40] Iter = [ 300/4937] Loss = 0.04217 Time = 109.6929s
+Epoch = [  3/ 40] Iter = [ 400/4937] Loss = 0.05453 Time = 107.9895s
+Epoch = [  3/ 40] Iter = [ 500/4937] Loss = 0.07604 Time = 110.0993s
+Epoch = [  3/ 40] Iter = [ 600/4937] Loss = 8.175e-17 Time = 108.2844s
+Epoch = [  3/ 40] Iter = [ 700/4937] Loss = 0.008133 Time = 112.1308s
+Epoch = [  3/ 40] Iter = [ 800/4937] Loss = 0.001005 Time = 110.7795s
+Epoch = [  3/ 40] Iter = [ 900/4937] Loss = 0.009937 Time = 109.6654s
+Epoch = [  3/ 40] Iter = [1000/4937] Loss = 7.242e-17 Time = 109.3018s
+Epoch = [  3/ 40] Iter = [1100/4937] Loss = 0.06159 Time = 109.5576s
+Epoch = [  3/ 40] Iter = [1200/4937] Loss = 0.0003036 Time = 108.9468s
+Epoch = [  3/ 40] Iter = [1300/4937] Loss = 0.06332 Time = 112.1088s
+Epoch = [  3/ 40] Iter = [1400/4937] Loss = 0.08549 Time = 109.6743s
+Epoch = [  3/ 40] Iter = [1500/4937] Loss = 0.02635 Time = 110.8345s
+Epoch = [  3/ 40] Iter = [1600/4937] Loss = 0.04689 Time = 108.5701s
+Epoch = [  3/ 40] Iter = [1700/4937] Loss = 0.05257 Time = 109.0005s
+Epoch = [  3/ 40] Iter = [1800/4937] Loss = 0.005389 Time = 111.3804s
+Epoch = [  3/ 40] Iter = [1900/4937] Loss = 0.06107 Time = 108.8041s
+Epoch = [  3/ 40] Iter = [2000/4937] Loss = 0.1396 Time = 110.1269s
+Epoch = [  3/ 40] Iter = [2100/4937] Loss = 0.00143 Time = 104.6241s
+Epoch = [  3/ 40] Iter = [2200/4937] Loss = 0.0442 Time = 108.0759s
+Epoch = [  3/ 40] Iter = [2300/4937] Loss = 0.08215 Time = 107.2589s
+Epoch = [  3/ 40] Iter = [2400/4937] Loss = 0.05564 Time = 107.8451s
+Epoch = [  3/ 40] Iter = [2500/4937] Loss = 0.002111 Time = 109.2685s
+Epoch = [  3/ 40] Iter = [2600/4937] Loss = 0.0004625 Time = 110.8129s
+Epoch = [  3/ 40] Iter = [2700/4937] Loss = 0.003399 Time = 110.0155s
+Epoch = [  3/ 40] Iter = [2800/4937] Loss = 0.06612 Time = 104.5762s
+Epoch = [  3/ 40] Iter = [2900/4937] Loss = 0.01041 Time = 111.4998s
+Epoch = [  3/ 40] Iter = [3000/4937] Loss = 0.003433 Time = 108.4359s
+Epoch = [  3/ 40] Iter = [3100/4937] Loss = 0.07233 Time = 113.1437s
+Epoch = [  3/ 40] Iter = [3200/4937] Loss = 0.04866 Time = 109.3464s
+Epoch = [  3/ 40] Iter = [3300/4937] Loss = 0.05915 Time = 110.7770s
+Epoch = [  3/ 40] Iter = [3400/4937] Loss = 0.002033 Time = 107.0824s
+Epoch = [  3/ 40] Iter = [3500/4937] Loss = 0.00764 Time = 108.7320s
+Epoch = [  3/ 40] Iter = [3600/4937] Loss = 0.07753 Time = 111.1765s
+Epoch = [  3/ 40] Iter = [3700/4937] Loss = 0.01053 Time = 112.9496s
+Epoch = [  3/ 40] Iter = [3800/4937] Loss = 0.001633 Time = 111.5476s
+Epoch = [  3/ 40] Iter = [3900/4937] Loss = 0.03345 Time = 113.0189s
+Epoch = [  3/ 40] Iter = [4000/4937] Loss = 0.05959 Time = 109.5600s
+Epoch = [  3/ 40] Iter = [4100/4937] Loss = 0.1408 Time = 107.4753s
+Epoch = [  3/ 40] Iter = [4200/4937] Loss = 0.04136 Time = 109.2288s
+Epoch = [  3/ 40] Iter = [4300/4937] Loss = 0.08343 Time = 110.1844s
+Epoch = [  3/ 40] Iter = [4400/4937] Loss = 0.003645 Time = 109.3961s
+Epoch = [  3/ 40] Iter = [4500/4937] Loss = 0.01799 Time = 108.4436s
+Epoch = [  3/ 40] Iter = [4600/4937] Loss = 0.0027 Time = 110.9864s
+Epoch = [  3/ 40] Iter = [4700/4937] Loss = 0.02302 Time = 110.3414s
+Epoch = [  3/ 40] Iter = [4800/4937] Loss = 0.01949 Time = 108.6534s
+Epoch = [  3/ 40] Iter = [4900/4937] Loss = 0.03656 Time = 109.4813s
+loss file saved! ../result/Varnet_40_epoch/val_loss_log
+Epoch = [   3/  40] TrainLoss = 0.03485 ValLoss = 0.09674 TrainTime = 5413.3549s ValTime = 295.8622s
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@NewRecord@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ForwardTime = 6.8714s
+Epoch # 4 ............... Varnet_40_epoch ...............
+Epoch = [  4/ 40] Iter = [   0/4937] Loss = 0.008523 Time = 1.4569s
+Epoch = [  4/ 40] Iter = [ 100/4937] Loss = 0.01267 Time = 110.4129s
+Epoch = [  4/ 40] Iter = [ 200/4937] Loss = 0.03134 Time = 109.3818s
+Epoch = [  4/ 40] Iter = [ 300/4937] Loss = 0.01457 Time = 111.1476s
+Epoch = [  4/ 40] Iter = [ 400/4937] Loss = 0.02532 Time = 108.9756s
+Epoch = [  4/ 40] Iter = [ 500/4937] Loss = 0.06952 Time = 107.0919s
+Epoch = [  4/ 40] Iter = [ 600/4937] Loss = 0.04211 Time = 107.5596s
+Epoch = [  4/ 40] Iter = [ 700/4937] Loss = 0.002038 Time = 108.7612s
+Epoch = [  4/ 40] Iter = [ 800/4937] Loss = 0.06399 Time = 111.0976s
+Epoch = [  4/ 40] Iter = [ 900/4937] Loss = 0.006821 Time = 109.0308s
+Epoch = [  4/ 40] Iter = [1000/4937] Loss = 0.0184 Time = 109.8019s
+Epoch = [  4/ 40] Iter = [1100/4937] Loss = 0.002642 Time = 109.9002s
+Epoch = [  4/ 40] Iter = [1200/4937] Loss = 0.03908 Time = 108.5911s
+Epoch = [  4/ 40] Iter = [1300/4937] Loss = 0.1804 Time = 105.1964s
+Epoch = [  4/ 40] Iter = [1400/4937] Loss = 0.04681 Time = 109.1881s
+Epoch = [  4/ 40] Iter = [1500/4937] Loss = 3.993e-16 Time = 111.3627s
+Epoch = [  4/ 40] Iter = [1600/4937] Loss = 0.02933 Time = 110.6997s
+Epoch = [  4/ 40] Iter = [1700/4937] Loss = 0.002328 Time = 107.3941s
+Epoch = [  4/ 40] Iter = [1800/4937] Loss = 0.001955 Time = 111.7070s
+Epoch = [  4/ 40] Iter = [1900/4937] Loss = 0.05795 Time = 112.7128s
+Epoch = [  4/ 40] Iter = [2000/4937] Loss = 0.006228 Time = 111.0709s
+Epoch = [  4/ 40] Iter = [2100/4937] Loss = 0.02531 Time = 111.5426s
+Epoch = [  4/ 40] Iter = [2200/4937] Loss = 1.868e-16 Time = 109.7565s
+Epoch = [  4/ 40] Iter = [2300/4937] Loss = 0.05034 Time = 106.6590s
+Epoch = [  4/ 40] Iter = [2400/4937] Loss = 0.0327 Time = 111.3017s
+Epoch = [  4/ 40] Iter = [2500/4937] Loss = 0.06101 Time = 113.4709s
+Epoch = [  4/ 40] Iter = [2600/4937] Loss = 8.469e-17 Time = 105.8115s
+Epoch = [  4/ 40] Iter = [2700/4937] Loss = 0.03307 Time = 109.4906s
+Epoch = [  4/ 40] Iter = [2800/4937] Loss = 0.001637 Time = 107.2636s
+Epoch = [  4/ 40] Iter = [2900/4937] Loss = 0.01147 Time = 109.7272s
+Epoch = [  4/ 40] Iter = [3000/4937] Loss = 0.006853 Time = 108.2949s
+Epoch = [  4/ 40] Iter = [3100/4937] Loss = 0.06326 Time = 108.7644s
+Epoch = [  4/ 40] Iter = [3200/4937] Loss = 0.02872 Time = 107.4733s
+Epoch = [  4/ 40] Iter = [3300/4937] Loss = 0.01628 Time = 106.3049s
+Epoch = [  4/ 40] Iter = [3400/4937] Loss = 0.01563 Time = 110.7496s
+Epoch = [  4/ 40] Iter = [3500/4937] Loss = 0.04064 Time = 111.1900s
+Epoch = [  4/ 40] Iter = [3600/4937] Loss = 0.003033 Time = 106.3037s
+Epoch = [  4/ 40] Iter = [3700/4937] Loss = 0.04131 Time = 113.5254s
+Epoch = [  4/ 40] Iter = [3800/4937] Loss = 0.009319 Time = 107.8729s
+Epoch = [  4/ 40] Iter = [3900/4937] Loss = 0.009417 Time = 109.9924s
+Epoch = [  4/ 40] Iter = [4000/4937] Loss = 0.003998 Time = 109.7115s
+Epoch = [  4/ 40] Iter = [4100/4937] Loss = 0.03987 Time = 110.8153s
+Epoch = [  4/ 40] Iter = [4200/4937] Loss = 0.0264 Time = 110.9470s
+Epoch = [  4/ 40] Iter = [4300/4937] Loss = 0.00703 Time = 108.3960s
+Epoch = [  4/ 40] Iter = [4400/4937] Loss = 0.002068 Time = 108.8534s
+Epoch = [  4/ 40] Iter = [4500/4937] Loss = 0.02504 Time = 111.5346s
+Epoch = [  4/ 40] Iter = [4600/4937] Loss = 0.03884 Time = 106.3134s
+Epoch = [  4/ 40] Iter = [4700/4937] Loss = 0.03507 Time = 109.8262s
+Epoch = [  4/ 40] Iter = [4800/4937] Loss = 0.01421 Time = 106.3637s
+Epoch = [  4/ 40] Iter = [4900/4937] Loss = 0.1052 Time = 108.6696s
+loss file saved! ../result/Varnet_40_epoch/val_loss_log
+Epoch = [   4/  40] TrainLoss = 0.03386 ValLoss = 0.09313 TrainTime = 5398.4943s ValTime = 294.7592s
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@NewRecord@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ForwardTime = 7.2051s
+Epoch # 5 ............... Varnet_40_epoch ...............
+Epoch = [  5/ 40] Iter = [   0/4937] Loss = 0.06122 Time = 1.1548s
+Epoch = [  5/ 40] Iter = [ 100/4937] Loss = 3.877e-17 Time = 109.0944s
+Epoch = [  5/ 40] Iter = [ 200/4937] Loss = 0.05617 Time = 110.2172s
+Epoch = [  5/ 40] Iter = [ 300/4937] Loss = 0.002931 Time = 109.3275s
+Epoch = [  5/ 40] Iter = [ 400/4937] Loss = 0.002396 Time = 113.0722s
+Epoch = [  5/ 40] Iter = [ 500/4937] Loss = 0.008614 Time = 112.1559s
+Epoch = [  5/ 40] Iter = [ 600/4937] Loss = 0.01302 Time = 113.3561s
+Epoch = [  5/ 40] Iter = [ 700/4937] Loss = 0.05496 Time = 110.6280s
+Epoch = [  5/ 40] Iter = [ 800/4937] Loss = 0.000515 Time = 109.5221s
+Epoch = [  5/ 40] Iter = [ 900/4937] Loss = 0.008053 Time = 108.8735s
+Epoch = [  5/ 40] Iter = [1000/4937] Loss = 0.02453 Time = 109.9358s
+Epoch = [  5/ 40] Iter = [1100/4937] Loss = 0.04556 Time = 105.6764s
+Epoch = [  5/ 40] Iter = [1200/4937] Loss = 0.04502 Time = 111.7286s
+Epoch = [  5/ 40] Iter = [1300/4937] Loss = 0.02837 Time = 109.4009s
+Epoch = [  5/ 40] Iter = [1400/4937] Loss = 0.004402 Time = 109.8932s
+Epoch = [  5/ 40] Iter = [1500/4937] Loss = 0.006116 Time = 112.7131s
+Epoch = [  5/ 40] Iter = [1600/4937] Loss = 0.02687 Time = 111.2578s
+Epoch = [  5/ 40] Iter = [1700/4937] Loss = 0.002194 Time = 110.8551s
+Epoch = [  5/ 40] Iter = [1800/4937] Loss = 0.03939 Time = 110.1487s
+Epoch = [  5/ 40] Iter = [1900/4937] Loss = 0.1535 Time = 107.3114s
+Epoch = [  5/ 40] Iter = [2000/4937] Loss = 0.06211 Time = 109.9973s
+Epoch = [  5/ 40] Iter = [2100/4937] Loss = 0.17 Time = 112.8906s
+Epoch = [  5/ 40] Iter = [2200/4937] Loss = 0.003362 Time = 110.1835s
+Epoch = [  5/ 40] Iter = [2300/4937] Loss = 0.07534 Time = 106.3950s
+Epoch = [  5/ 40] Iter = [2400/4937] Loss = 0.02206 Time = 110.1442s
+Epoch = [  5/ 40] Iter = [2500/4937] Loss = 0.0335 Time = 109.2610s
+Epoch = [  5/ 40] Iter = [2600/4937] Loss = 0.0003486 Time = 107.9565s
+Epoch = [  5/ 40] Iter = [2700/4937] Loss = 0.1381 Time = 107.8531s
+Epoch = [  5/ 40] Iter = [2800/4937] Loss = 0.0143 Time = 107.3133s
+Epoch = [  5/ 40] Iter = [2900/4937] Loss = 0.0003847 Time = 109.4959s
+Epoch = [  5/ 40] Iter = [3000/4937] Loss = 0.1217 Time = 105.4650s
+Epoch = [  5/ 40] Iter = [3100/4937] Loss = 0.08008 Time = 106.2705s
+Epoch = [  5/ 40] Iter = [3200/4937] Loss = 0.1819 Time = 107.1457s
+Epoch = [  5/ 40] Iter = [3300/4937] Loss = 0.006258 Time = 106.8746s
+Epoch = [  5/ 40] Iter = [3400/4937] Loss = 0.01194 Time = 112.6046s
+Epoch = [  5/ 40] Iter = [3500/4937] Loss = 0.02408 Time = 108.2392s
+Epoch = [  5/ 40] Iter = [3600/4937] Loss = 0.0002465 Time = 108.4100s
+Epoch = [  5/ 40] Iter = [3700/4937] Loss = 0.07273 Time = 108.4843s
+Epoch = [  5/ 40] Iter = [3800/4937] Loss = 0.03147 Time = 107.7896s
+Epoch = [  5/ 40] Iter = [3900/4937] Loss = 0.04105 Time = 109.2358s
+Epoch = [  5/ 40] Iter = [4000/4937] Loss = 0.07928 Time = 107.9401s
+Epoch = [  5/ 40] Iter = [4100/4937] Loss = 2.978e-16 Time = 112.1106s
+Epoch = [  5/ 40] Iter = [4200/4937] Loss = 0.02157 Time = 108.7263s
+Epoch = [  5/ 40] Iter = [4300/4937] Loss = 0.05639 Time = 108.9106s
+Epoch = [  5/ 40] Iter = [4400/4937] Loss = 0.006918 Time = 109.7019s
+Epoch = [  5/ 40] Iter = [4500/4937] Loss = 0.1102 Time = 109.2793s
+Epoch = [  5/ 40] Iter = [4600/4937] Loss = 0.01186 Time = 112.1882s
+Epoch = [  5/ 40] Iter = [4700/4937] Loss = 0.0004441 Time = 110.7145s
+Epoch = [  5/ 40] Iter = [4800/4937] Loss = 0.09192 Time = 106.4990s
+Epoch = [  5/ 40] Iter = [4900/4937] Loss = 0.04527 Time = 105.3506s
+loss file saved! ../result/Varnet_40_epoch/val_loss_log
+Epoch = [   5/  40] TrainLoss = 0.03314 ValLoss = 0.09342 TrainTime = 5398.4921s ValTime = 295.4378s
+Epoch # 6 ............... Varnet_40_epoch ...............
+Epoch = [  6/ 40] Iter = [   0/4937] Loss = 0.01983 Time = 1.5419s
+Epoch = [  6/ 40] Iter = [ 100/4937] Loss = 0.1913 Time = 109.7956s
+Epoch = [  6/ 40] Iter = [ 200/4937] Loss = 7.167e-16 Time = 112.4833s
+Epoch = [  6/ 40] Iter = [ 300/4937] Loss = 0.005192 Time = 110.2535s
+Epoch = [  6/ 40] Iter = [ 400/4937] Loss = 0.03048 Time = 112.7824s
+Epoch = [  6/ 40] Iter = [ 500/4937] Loss = 7.595e-17 Time = 112.0250s
+Epoch = [  6/ 40] Iter = [ 600/4937] Loss = 0.0602 Time = 105.2397s
+Epoch = [  6/ 40] Iter = [ 700/4937] Loss = 0.005221 Time = 112.1274s
+Epoch = [  6/ 40] Iter = [ 800/4937] Loss = 0.09502 Time = 112.3148s
+Epoch = [  6/ 40] Iter = [ 900/4937] Loss = 0.07362 Time = 115.1487s
+Epoch = [  6/ 40] Iter = [1000/4937] Loss = 0.1058 Time = 109.5682s
+Epoch = [  6/ 40] Iter = [1100/4937] Loss = 0.004223 Time = 109.2227s
+Epoch = [  6/ 40] Iter = [1200/4937] Loss = 0.02203 Time = 111.6357s
+Epoch = [  6/ 40] Iter = [1300/4937] Loss = 0.002732 Time = 112.5127s
+Epoch = [  6/ 40] Iter = [1400/4937] Loss = 0.1185 Time = 114.6827s
+Epoch = [  6/ 40] Iter = [1500/4937] Loss = 0.05436 Time = 113.2145s
+Epoch = [  6/ 40] Iter = [1600/4937] Loss = 0.03159 Time = 111.5862s
+Epoch = [  6/ 40] Iter = [1700/4937] Loss = 0.06288 Time = 109.8936s
+Epoch = [  6/ 40] Iter = [1800/4937] Loss = 0.02566 Time = 108.6043s
+Epoch = [  6/ 40] Iter = [1900/4937] Loss = 0.03011 Time = 113.0947s
+Epoch = [  6/ 40] Iter = [2000/4937] Loss = 0.03809 Time = 110.7236s
+Epoch = [  6/ 40] Iter = [2100/4937] Loss = 0.001399 Time = 114.7359s
+Epoch = [  6/ 40] Iter = [2200/4937] Loss = 0.007608 Time = 112.0048s
+Epoch = [  6/ 40] Iter = [2300/4937] Loss = 0.1069 Time = 107.7264s
+Epoch = [  6/ 40] Iter = [2400/4937] Loss = 0.01323 Time = 111.3220s
+Epoch = [  6/ 40] Iter = [2500/4937] Loss = 0.01829 Time = 113.0235s
+Epoch = [  6/ 40] Iter = [2600/4937] Loss = 0.004019 Time = 118.5825s
+Epoch = [  6/ 40] Iter = [2700/4937] Loss = 0.03747 Time = 111.2128s
+Epoch = [  6/ 40] Iter = [2800/4937] Loss = 0.1012 Time = 113.0556s
+Epoch = [  6/ 40] Iter = [2900/4937] Loss = 0.04449 Time = 111.6822s
+Epoch = [  6/ 40] Iter = [3000/4937] Loss = 0.0066 Time = 112.2394s
+Epoch = [  6/ 40] Iter = [3100/4937] Loss = 4.594e-16 Time = 111.3346s
+Epoch = [  6/ 40] Iter = [3200/4937] Loss = 0.03346 Time = 112.0326s
+Epoch = [  6/ 40] Iter = [3300/4937] Loss = 0.137 Time = 110.5105s
+Epoch = [  6/ 40] Iter = [3400/4937] Loss = 0.01496 Time = 110.3960s
+Epoch = [  6/ 40] Iter = [3500/4937] Loss = 0.0003372 Time = 113.1441s
+Epoch = [  6/ 40] Iter = [3600/4937] Loss = 0.002898 Time = 117.3375s
+Epoch = [  6/ 40] Iter = [3700/4937] Loss = 0.02844 Time = 110.8952s
+Epoch = [  6/ 40] Iter = [3800/4937] Loss = 3.808e-16 Time = 114.0800s
+Epoch = [  6/ 40] Iter = [3900/4937] Loss = 0.005455 Time = 106.8054s
+Epoch = [  6/ 40] Iter = [4000/4937] Loss = 0.07865 Time = 115.8369s
+Epoch = [  6/ 40] Iter = [4100/4937] Loss = 0.07056 Time = 109.6288s
+Epoch = [  6/ 40] Iter = [4200/4937] Loss = 0.1901 Time = 112.4690s
+Epoch = [  6/ 40] Iter = [4300/4937] Loss = 0.0009171 Time = 113.5246s
+Epoch = [  6/ 40] Iter = [4400/4937] Loss = 0.1374 Time = 111.6462s
+Epoch = [  6/ 40] Iter = [4500/4937] Loss = 0.02451 Time = 109.5168s
+Epoch = [  6/ 40] Iter = [4600/4937] Loss = 0.05579 Time = 110.4534s
+Epoch = [  6/ 40] Iter = [4700/4937] Loss = 0.03211 Time = 112.1310s
+Epoch = [  6/ 40] Iter = [4800/4937] Loss = 0.0469 Time = 110.8946s
+Epoch = [  6/ 40] Iter = [4900/4937] Loss = 0.0312 Time = 112.3989s
+loss file saved! ../result/Varnet_40_epoch/val_loss_log
+Epoch = [   6/  40] TrainLoss = 0.04959 ValLoss = 0.1621 TrainTime = 5520.6457s ValTime = 295.7902s
+Epoch # 7 ............... Varnet_40_epoch ...............
+Epoch = [  7/ 40] Iter = [   0/4937] Loss = 0.009673 Time = 0.9633s
+Epoch = [  7/ 40] Iter = [ 100/4937] Loss = 0.002997 Time = 110.9910s
+Epoch = [  7/ 40] Iter = [ 200/4937] Loss = 0.0635 Time = 112.5743s
+Epoch = [  7/ 40] Iter = [ 300/4937] Loss = 0.05341 Time = 112.0494s
+Epoch = [  7/ 40] Iter = [ 400/4937] Loss = 0.004127 Time = 110.5286s
+Epoch = [  7/ 40] Iter = [ 500/4937] Loss = 0.00255 Time = 111.8304s
+Epoch = [  7/ 40] Iter = [ 600/4937] Loss = 0.1799 Time = 107.6320s
+Epoch = [  7/ 40] Iter = [ 700/4937] Loss = 0.1743 Time = 110.0766s
+Epoch = [  7/ 40] Iter = [ 800/4937] Loss = 0.01881 Time = 112.4455s
+Epoch = [  7/ 40] Iter = [ 900/4937] Loss = 0.2013 Time = 112.3707s
+Epoch = [  7/ 40] Iter = [1000/4937] Loss = 0.08637 Time = 109.4268s
+Epoch = [  7/ 40] Iter = [1100/4937] Loss = 0.08757 Time = 113.5885s
+Epoch = [  7/ 40] Iter = [1200/4937] Loss = 0.08558 Time = 116.5523s
+Epoch = [  7/ 40] Iter = [1300/4937] Loss = 0.03782 Time = 112.9667s
+Epoch = [  7/ 40] Iter = [1400/4937] Loss = 1.218e-16 Time = 115.6748s
+Epoch = [  7/ 40] Iter = [1500/4937] Loss = 0.03424 Time = 111.8476s
+Epoch = [  7/ 40] Iter = [1600/4937] Loss = 0.02211 Time = 113.2807s
+Epoch = [  7/ 40] Iter = [1700/4937] Loss = 0.07353 Time = 109.5835s
+Epoch = [  7/ 40] Iter = [1800/4937] Loss = 0.1064 Time = 108.6852s
+Epoch = [  7/ 40] Iter = [1900/4937] Loss = 0.002518 Time = 112.5816s
+Epoch = [  7/ 40] Iter = [2000/4937] Loss = 0.05313 Time = 108.3687s
+Epoch = [  7/ 40] Iter = [2100/4937] Loss = 0.02251 Time = 114.0116s
+Epoch = [  7/ 40] Iter = [2200/4937] Loss = 0.09568 Time = 111.0678s
+Epoch = [  7/ 40] Iter = [2300/4937] Loss = 7.366e-17 Time = 111.7535s
+Epoch = [  7/ 40] Iter = [2400/4937] Loss = 0.01162 Time = 109.4832s
+Epoch = [  7/ 40] Iter = [2500/4937] Loss = 0.1683 Time = 109.6994s
+Epoch = [  7/ 40] Iter = [2600/4937] Loss = 0.1209 Time = 115.0979s
+Epoch = [  7/ 40] Iter = [2700/4937] Loss = 0.0385 Time = 107.7952s
+Epoch = [  7/ 40] Iter = [2800/4937] Loss = 0.1099 Time = 109.6335s
+Epoch = [  7/ 40] Iter = [2900/4937] Loss = 0.0422 Time = 114.9605s
+Epoch = [  7/ 40] Iter = [3000/4937] Loss = 3.463e-16 Time = 111.5748s
+Epoch = [  7/ 40] Iter = [3100/4937] Loss = 0.05079 Time = 114.0706s
+Epoch = [  7/ 40] Iter = [3200/4937] Loss = 0.01422 Time = 110.0206s
+Epoch = [  7/ 40] Iter = [3300/4937] Loss = 3.109e-16 Time = 114.1701s
+Epoch = [  7/ 40] Iter = [3400/4937] Loss = 0.03319 Time = 113.3864s
+Epoch = [  7/ 40] Iter = [3500/4937] Loss = 0.04766 Time = 111.9672s
+Epoch = [  7/ 40] Iter = [3600/4937] Loss = 0.01277 Time = 110.6546s
+Epoch = [  7/ 40] Iter = [3700/4937] Loss = 0.01391 Time = 114.7623s
+Epoch = [  7/ 40] Iter = [3800/4937] Loss = 0.01787 Time = 113.5410s
+Epoch = [  7/ 40] Iter = [3900/4937] Loss = 0.04099 Time = 112.1924s
+Epoch = [  7/ 40] Iter = [4000/4937] Loss = 0.02594 Time = 112.8312s
+Epoch = [  7/ 40] Iter = [4100/4937] Loss = 0.00834 Time = 113.4887s
+Epoch = [  7/ 40] Iter = [4200/4937] Loss = 0.02203 Time = 113.1768s
+Epoch = [  7/ 40] Iter = [4300/4937] Loss = 0.03638 Time = 114.2782s
+Epoch = [  7/ 40] Iter = [4400/4937] Loss = 0.05495 Time = 111.6307s
+Epoch = [  7/ 40] Iter = [4500/4937] Loss = 0.04397 Time = 110.5203s
+Epoch = [  7/ 40] Iter = [4600/4937] Loss = 0.03597 Time = 113.9959s
+Epoch = [  7/ 40] Iter = [4700/4937] Loss = 0.06186 Time = 105.9888s
+Epoch = [  7/ 40] Iter = [4800/4937] Loss = 2.099e-16 Time = 111.2756s
+Epoch = [  7/ 40] Iter = [4900/4937] Loss = 0.008446 Time = 111.6793s
+loss file saved! ../result/Varnet_40_epoch/val_loss_log
+Epoch = [   7/  40] TrainLoss = 0.04491 ValLoss = 0.1821 TrainTime = 5522.4839s ValTime = 295.7104s
+Epoch # 8 ............... Varnet_40_epoch ...............
+Epoch = [  8/ 40] Iter = [   0/4937] Loss = 0.07537 Time = 1.0202s
+Epoch = [  8/ 40] Iter = [ 100/4937] Loss = 0.05477 Time = 109.1055s
+Epoch = [  8/ 40] Iter = [ 200/4937] Loss = 0.04583 Time = 114.4575s
+Epoch = [  8/ 40] Iter = [ 300/4937] Loss = 0.002241 Time = 111.7503s
+Epoch = [  8/ 40] Iter = [ 400/4937] Loss = 0.02602 Time = 110.8699s
+Epoch = [  8/ 40] Iter = [ 500/4937] Loss = 0.05462 Time = 112.9641s
+Epoch = [  8/ 40] Iter = [ 600/4937] Loss = 0.00109 Time = 113.7445s
+Epoch = [  8/ 40] Iter = [ 700/4937] Loss = 0.03386 Time = 114.1674s
+Epoch = [  8/ 40] Iter = [ 800/4937] Loss = 0.1046 Time = 112.1699s
+Epoch = [  8/ 40] Iter = [ 900/4937] Loss = 0.09175 Time = 109.0333s
+Epoch = [  8/ 40] Iter = [1000/4937] Loss = 0.02 Time = 112.2658s
+Epoch = [  8/ 40] Iter = [1100/4937] Loss = 0.04127 Time = 109.4969s
+Epoch = [  8/ 40] Iter = [1200/4937] Loss = 0.01388 Time = 112.3322s
+Epoch = [  8/ 40] Iter = [1300/4937] Loss = 0.02315 Time = 113.1019s
+Epoch = [  8/ 40] Iter = [1400/4937] Loss = 0.05215 Time = 112.3280s
+Epoch = [  8/ 40] Iter = [1500/4937] Loss = 0.08757 Time = 106.4452s
+Epoch = [  8/ 40] Iter = [1600/4937] Loss = 0.01763 Time = 116.4911s
+Traceback (most recent call last):
+  File "/root/FastMRI2025/train_varnet.py", line 68, in <module>
+    train(args)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 177, in train
+    train_loss, train_time = train_epoch(args, epoch, model, train_loader, optimizer, loss_type)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 34, in train_epoch
+    output = model(kspace, mask)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1857, in _call_impl
+    return inner()
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1805, in inner
+    result = forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/varnet.py", line 249, in forward
+    kspace_pred = checkpoint(cascade, kspace_pred, masked_kspace, mask, sens_maps, use_reentrant=False)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/_compile.py", line 51, in inner
+    return disable_fn(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py", line 838, in _fn
+    return fn(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/checkpoint.py", line 495, in checkpoint
+    ret = function(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/root/FastMRI2025/utils/model/varnet.py", line 293, in forward
+    zero = torch.zeros(1, 1, 1, 1, 1).to(current_kspace)
+KeyboardInterrupt

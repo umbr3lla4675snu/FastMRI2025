@@ -36,7 +36,7 @@ class TestArgs:
     def __init__(self):
         # Basic parameters
         self.max_key = 'max'
-        self.target_key = 'reconstruction_esc'
+        self.target_key = 'image_label'
         self.input_key = 'kspace'
         self.batch_size = 1
         
@@ -59,12 +59,12 @@ class TestArgs:
         
         # Transformation weights
         self.aug_weight_translation = 1.0
-        self.aug_weight_rotation = 1.0
+        self.aug_weight_rotation = 3.0
         self.aug_weight_shearing = 1.0
         self.aug_weight_scaling = 1.0
         self.aug_weight_rot90 = 0.5
-        self.aug_weight_fliph = 1.0
-        self.aug_weight_flipv = 1.0
+        self.aug_weight_fliph = 2.0
+        self.aug_weight_flipv = 2.0
         
         # Transformation limits
         self.aug_max_translation_x = 0.06
@@ -182,8 +182,8 @@ def load_real_data():
             
             # Load attributes
             attrs = {}
-            if 'reconstruction_esc' in f.keys():
-                target = f['reconstruction_esc'][middle_slice]
+            if 'image_label' in f.keys():
+                target = f['image_label'][middle_slice]
                 attrs['max'] = float(np.max(np.abs(target)))
                 print(f"Target shape: {target.shape}")
             else:
@@ -273,6 +273,7 @@ def visualize_results(original_data, augmented_data, save_path=None):
         original_reconstructed = torch.sqrt(torch.sum(recons_per_coil**2, dim=0))
     else:
         original_reconstructed = complex_abs(ifft2c(original_kspace_complex))
+    print(f"Original reconstructed shape: {original_reconstructed.shape}")
     axes[0, 2].imshow(original_reconstructed.numpy(), cmap='gray')
     axes[0, 2].set_title('Original Reconstructed')
     axes[0, 2].axis('off')
@@ -282,6 +283,7 @@ def visualize_results(original_data, augmented_data, save_path=None):
         if len(target_img.shape) > 2:
             # Take RSS across coils if multi-coil
             target_img = torch.sqrt(torch.sum(target_img**2, dim=0))
+        print(f"Original target shape: {target_img.shape}")
         axes[0, 3].imshow(target_img.numpy(), cmap='gray')
         axes[0, 3].set_title('Original Target')
     else:
@@ -320,6 +322,7 @@ def visualize_results(original_data, augmented_data, save_path=None):
         augmented_reconstructed = torch.sqrt(torch.sum(recons_per_coil**2, dim=0))
     else:
         augmented_reconstructed = complex_abs(ifft2c(augmented_kspace_complex))
+    print(f"Augmented reconstructed shape: {augmented_reconstructed.shape}")
     axes[1, 2].imshow(augmented_reconstructed.numpy(), cmap='gray')
     axes[1, 2].set_title('Augmented Reconstructed')
     axes[1, 2].axis('off')
@@ -329,6 +332,7 @@ def visualize_results(original_data, augmented_data, save_path=None):
         if len(target_img.shape) > 2:
             # Take RSS across coils if multi-coil
             target_img = torch.sqrt(torch.sum(target_img**2, dim=0))
+        print(f"Augmented target shape: {target_img.shape}")
         axes[1, 3].imshow(target_img.numpy(), cmap='gray')
         axes[1, 3].set_title('Augmented Target')
     else:

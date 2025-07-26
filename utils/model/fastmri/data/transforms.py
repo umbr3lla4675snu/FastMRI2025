@@ -362,12 +362,14 @@ class UnetDataTransform:
 
 class VarNetDataTransform:
     """
-    Data Transformer for training VarNet models.
+    Data Transformer for training VarNet models with added MRAugment data augmentation.
     """
 
-    def __init__(self, mask_func: Optional[MaskFunc] = None, use_seed: bool = True):
+    def __init__(self, augmentor = None, mask_func: Optional[MaskFunc] = None, use_seed: bool = True):
         """
         Args:
+            augmentor: DataAugmentor object that encompasses the MRAugment pipeline and
+                schedules the augmentation probability
             mask_func: Optional; A function that can create a mask of
                 appropriate shape. Defaults to None.
             use_seed: If True, this class computes a pseudo random number
@@ -376,6 +378,11 @@ class VarNetDataTransform:
         """
         self.mask_func = mask_func
         self.use_seed = use_seed
+        if augmentor is not None:
+            self.use_augment = True
+            self.augmentor = augmentor
+        else:
+            self.use_augment = False
 
     def __call__(
         self,
@@ -406,7 +413,11 @@ class VarNetDataTransform:
                 max_value: Maximum image value.
                 crop_size: The size to crop the final image.
         """
+        # Make sure data types match
+        kspace = kspace.astype(np.complex64)
+
         if target is not None:
+            target = target.astype(np.float32)
             target = to_tensor(target)
             max_value = attrs["max"]
         else:
@@ -414,11 +425,29 @@ class VarNetDataTransform:
             max_value = 0.0
 
         kspace = to_tensor(kspace)
+                
+        # Apply augmentations if needed
+        if self.use_augment: 
+            if self.augmentor.schedule_p() > 0.0:                
+                kspace, target = self.augmentor(kspace, target.shape)
+                
+        # Add singleton channel dimension if singlecoil
+        if len(kspace.shape) == 3:
+            kspace.unsqueeze_(0)
+        assert len(kspace.shape) == 4
+                
         seed = None if not self.use_seed else tuple(map(ord, fname))
         acq_start = attrs["padding_left"]
         acq_end = attrs["padding_right"]
 
-        crop_size = torch.tensor([attrs["recon_size"][0], attrs["recon_size"][1]])
+        # Handle crop_size calculation for both forward and training modes
+        if target is not None and target.numel() > 1:  # Check if target is not a scalar
+            crop_size = torch.tensor([target.shape[0], target.shape[1]])
+        elif 'recon_size' in attrs:
+            crop_size = torch.tensor(attrs['recon_size'])
+        else:
+            # Fallback: derive from kspace dimensions
+            crop_size = torch.tensor([kspace.shape[-2], kspace.shape[-1]])
 
         if self.mask_func:
             masked_kspace, mask = apply_mask(
@@ -438,7 +467,7 @@ class VarNetDataTransform:
 
         return (
             masked_kspace,
-            mask.byte(),
+            mask.bool(),
             target,
             fname,
             slice_num,

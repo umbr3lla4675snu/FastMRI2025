@@ -1,0 +1,17 @@
+Current cuda device:  0
+Gradient checkpointing enabled - this will save memory but may slow down training
+✓ Data augmentation ENABLED
+  - Augmentation strength: 0.05
+  - Augmentation schedule: ramp
+  - Rotation weight: 1.0
+  - Scaling weight: 1.0
+Using Weighted SSIM Loss with index-based weighting
+Learning rate scheduler enabled: StepLR with step_size=10, gamma=0.5
+Traceback (most recent call last):
+  File "/root/FastMRI2025/train_varnet.py", line 68, in <module>
+    train(args)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 166, in train
+    val_loader = create_data_loaders(data_path = args.data_path_val, args = val_args)
+  File "/root/FastMRI2025/utils/data/load_data.py", line 78, in create_data_loaders
+    transform=DataTransform(isforward, max_key_, args),  # args 전달
+TypeError: DataTransform.__init__() takes 3 positional arguments but 4 were given

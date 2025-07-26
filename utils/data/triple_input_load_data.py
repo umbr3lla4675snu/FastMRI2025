@@ -13,6 +13,7 @@ import torch
 from utils.data.Augmentation.data_augment import DataAugmentor
 import utils.model.fastmri as fastmri
 from utils.model.fastmri.data import transforms
+from utils.common.utils import center_crop
 
 
 class TripleInputSliceData(Dataset):
@@ -66,8 +67,41 @@ class TripleInputSliceData(Dataset):
         if self.forward:
             target = -1
             attrs = -1
-            grappa_image = -1
-            input_image = -1
+            
+            # Even in forward mode, we need to generate grappa and input images for triple input NAFNet
+            # Create GRAPPA-like image (zero-filled reconstruction)
+            kspace_tensor = torch.from_numpy(input_kspace)
+            kspace_tensor = torch.stack([kspace_tensor.real, kspace_tensor.imag], dim=-1)
+            grappa_full = fastmri.complex_abs(fastmri.ifft2c(kspace_tensor))
+            
+            # Apply RSS for multicoil data and center crop to match VarNet output
+            if grappa_full.dim() > 2:  # multicoil
+                grappa_image = fastmri.rss(grappa_full, dim=0)
+            else:  # single coil
+                grappa_image = grappa_full
+            
+            # Add channel dimension if needed for center_crop
+            if grappa_image.dim() == 2:
+                grappa_image = grappa_image.unsqueeze(0)
+            grappa_image = center_crop(grappa_image, 384, 384).squeeze(0).cpu().numpy()
+            
+            # Create input aliased image from masked kspace
+            kspace_tensor_masked = torch.from_numpy(input_kspace * mask)
+            kspace_tensor_masked = torch.stack([kspace_tensor_masked.real, kspace_tensor_masked.imag], dim=-1)
+            
+            # Convert to image space
+            image_tensor = fastmri.ifft2c(kspace_tensor_masked)
+            
+            # Apply root sum of squares for multicoil data and center crop
+            if image_tensor.dim() > 3:  # multicoil
+                input_full = fastmri.rss(fastmri.complex_abs(image_tensor), dim=0)
+            else:  # single coil
+                input_full = fastmri.complex_abs(image_tensor)
+            
+            # Add channel dimension if needed for center_crop
+            if input_full.dim() == 2:
+                input_full = input_full.unsqueeze(0)
+            input_image = center_crop(input_full, 384, 384).squeeze(0).cpu().numpy()
         else:
             with h5py.File(image_fname, "r") as hf:
                 target = hf[self.target_key][dataslice]
@@ -82,7 +116,14 @@ class TripleInputSliceData(Dataset):
                     # Create zero-filled reconstruction as fallback
                     kspace_tensor = torch.from_numpy(input_kspace)
                     kspace_tensor = torch.stack([kspace_tensor.real, kspace_tensor.imag], dim=-1)
-                    grappa_image = fastmri.complex_abs(fastmri.ifft2c(kspace_tensor)).numpy()
+                    grappa_full = fastmri.complex_abs(fastmri.ifft2c(kspace_tensor))
+                    if grappa_full.dim() > 2:  # multicoil
+                        grappa_full = fastmri.rss(grappa_full, dim=0)
+                    
+                    # Add channel dimension if needed for center_crop
+                    if grappa_full.dim() == 2:
+                        grappa_full = grappa_full.unsqueeze(0)
+                    grappa_image = center_crop(grappa_full, 384, 384).squeeze(0).cpu().numpy()
                 
                 # Load input aliased image  
                 if 'image_input' in hf.keys():
@@ -96,11 +137,16 @@ class TripleInputSliceData(Dataset):
                     # Convert to image space
                     image_tensor = fastmri.ifft2c(kspace_tensor)
                     
-                    # Apply root sum of squares for multicoil data
+                    # Apply root sum of squares for multicoil data and center crop
                     if image_tensor.dim() > 3:  # multicoil
-                        input_image = fastmri.rss(fastmri.complex_abs(image_tensor), dim=0).numpy()
+                        input_full = fastmri.rss(fastmri.complex_abs(image_tensor), dim=0)
                     else:  # single coil
-                        input_image = fastmri.complex_abs(image_tensor).numpy()
+                        input_full = fastmri.complex_abs(image_tensor)
+                    
+                    # Add channel dimension if needed for center_crop
+                    if input_full.dim() == 2:
+                        input_full = input_full.unsqueeze(0)
+                    input_image = center_crop(input_full, 384, 384).squeeze(0).cpu().numpy()
         
         return self.transform(mask, input_kspace, target, attrs, kspace_fname.name, dataslice, max_slice_index, grappa_image, input_image)
 
@@ -133,9 +179,26 @@ class TripleInputDataTransform:
             input_image = to_tensor(input_image)
         else:
             target = -1
-            maximum = -1
-            grappa_image = -1
-            input_image = -1
+            # Calculate maximum value from the generated images for proper normalization
+            grappa_tensor = to_tensor(grappa_image)
+            input_tensor = to_tensor(input_image)
+            
+            # Scale images to more appropriate range (similar to training data)
+            # Multiply by a factor to bring values to typical MRI range
+            scale_factor = 1000.0  # Bring values from ~0.0005 to ~0.5 range
+            grappa_tensor = grappa_tensor * scale_factor
+            input_tensor = input_tensor * scale_factor
+            
+            # Use maximum value for normalization
+            maximum = max(grappa_tensor.max().item(), input_tensor.max().item())
+            
+            # Ensure maximum is reasonable
+            if maximum < 0.1:
+                maximum = 1.0
+            
+            # Even in forward mode, we need the actual images for triple input NAFNet
+            grappa_image = grappa_tensor
+            input_image = input_tensor
         
         # Store original mask for later use
         original_mask = mask.copy()
