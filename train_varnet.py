@@ -50,8 +50,8 @@ def parse():
 if __name__ == '__main__':
     args = parse()
 
-    wandb.init(project="FastMRI2025", name=str(args.net_name))
-    wandb.config.update(args)
+    # wandb.init(project="FastMRI2025", name=str(args.net_name))
+    # wandb.config.update(args)
 
     # fix seed
     if args.seed is not None:

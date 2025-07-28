@@ -1387,3 +1387,88 @@ Epoch = [ 25/ 40] Iter = [2800/4937] Loss = 0.04052 Time = 112.6668s
 Epoch = [ 25/ 40] Iter = [2900/4937] Loss = 0.04402 Time = 111.8418s
 Epoch = [ 25/ 40] Iter = [3000/4937] Loss = 0.1637 Time = 110.9467s
 Epoch = [ 25/ 40] Iter = [3100/4937] Loss = 0.004591 Time = 110.5599s
+Epoch = [ 25/ 40] Iter = [3200/4937] Loss = 0.04405 Time = 112.5094s
+Epoch = [ 25/ 40] Iter = [3300/4937] Loss = 0.005871 Time = 114.0326s
+Epoch = [ 25/ 40] Iter = [3400/4937] Loss = 0.004657 Time = 111.9432s
+Epoch = [ 25/ 40] Iter = [3500/4937] Loss = 0.04412 Time = 111.7255s
+Epoch = [ 25/ 40] Iter = [3600/4937] Loss = 0.1096 Time = 113.3832s
+Epoch = [ 25/ 40] Iter = [3700/4937] Loss = 0.01012 Time = 109.0146s
+Epoch = [ 25/ 40] Iter = [3800/4937] Loss = 0.007108 Time = 112.6879s
+Epoch = [ 25/ 40] Iter = [3900/4937] Loss = 0.002139 Time = 117.2018s
+Epoch = [ 25/ 40] Iter = [4000/4937] Loss = 0.04591 Time = 112.7359s
+Epoch = [ 25/ 40] Iter = [4100/4937] Loss = 0.02308 Time = 107.7674s
+Epoch = [ 25/ 40] Iter = [4200/4937] Loss = 0.05436 Time = 112.2624s
+Epoch = [ 25/ 40] Iter = [4300/4937] Loss = 0.001642 Time = 110.3658s
+Epoch = [ 25/ 40] Iter = [4400/4937] Loss = 0.0352 Time = 111.7637s
+Epoch = [ 25/ 40] Iter = [4500/4937] Loss = 0.02686 Time = 112.6331s
+Epoch = [ 25/ 40] Iter = [4600/4937] Loss = 0.008636 Time = 116.3032s
+Epoch = [ 25/ 40] Iter = [4700/4937] Loss = 0.08059 Time = 111.5620s
+Epoch = [ 25/ 40] Iter = [4800/4937] Loss = 0.0005955 Time = 113.2973s
+Epoch = [ 25/ 40] Iter = [4900/4937] Loss = 0.003297 Time = 113.8757s
+loss file saved! ../result/Varnet_40_epoch_with_augmentation/val_loss_log
+Epoch = [  25/  40] TrainLoss = 0.03639 ValLoss = 0.18 TrainTime = 5535.2893s ValTime = 295.5958s
+Epoch #26 ............... Varnet_40_epoch_with_augmentation ...............
+Epoch = [ 26/ 40] Iter = [   0/4937] Loss = 0.006492 Time = 1.2888s
+Epoch = [ 26/ 40] Iter = [ 100/4937] Loss = 0.001084 Time = 111.7673s
+Epoch = [ 26/ 40] Iter = [ 200/4937] Loss = 0.02198 Time = 111.1042s
+Epoch = [ 26/ 40] Iter = [ 300/4937] Loss = 0.0003422 Time = 111.8763s
+Epoch = [ 26/ 40] Iter = [ 400/4937] Loss = 0.0112 Time = 113.7017s
+Epoch = [ 26/ 40] Iter = [ 500/4937] Loss = 2.516e-16 Time = 112.3377s
+Epoch = [ 26/ 40] Iter = [ 600/4937] Loss = 0.01043 Time = 112.8793s
+Epoch = [ 26/ 40] Iter = [ 700/4937] Loss = 0.05076 Time = 110.4483s
+Epoch = [ 26/ 40] Iter = [ 800/4937] Loss = 0.04045 Time = 112.9931s
+Epoch = [ 26/ 40] Iter = [ 900/4937] Loss = 0.02157 Time = 111.7049s
+Epoch = [ 26/ 40] Iter = [1000/4937] Loss = 0.006853 Time = 111.5181s
+Epoch = [ 26/ 40] Iter = [1100/4937] Loss = 0.01682 Time = 111.8969s
+Epoch = [ 26/ 40] Iter = [1200/4937] Loss = 0.09069 Time = 114.4802s
+Epoch = [ 26/ 40] Iter = [1300/4937] Loss = 0.02905 Time = 106.6733s
+Epoch = [ 26/ 40] Iter = [1400/4937] Loss = 0.0009468 Time = 112.8271s
+Epoch = [ 26/ 40] Iter = [1500/4937] Loss = 0.02632 Time = 114.4713s
+Epoch = [ 26/ 40] Iter = [1600/4937] Loss = 9.737e-17 Time = 110.8980s
+Epoch = [ 26/ 40] Iter = [1700/4937] Loss = 0.006928 Time = 110.6047s
+Epoch = [ 26/ 40] Iter = [1800/4937] Loss = 0.1342 Time = 115.6948s
+Epoch = [ 26/ 40] Iter = [1900/4937] Loss = 0.0437 Time = 111.6529s
+Epoch = [ 26/ 40] Iter = [2000/4937] Loss = 0.0432 Time = 109.5823s
+Epoch = [ 26/ 40] Iter = [2100/4937] Loss = 0.04677 Time = 114.3987s
+Epoch = [ 26/ 40] Iter = [2200/4937] Loss = 2.44e-16 Time = 110.0531s
+Epoch = [ 26/ 40] Iter = [2300/4937] Loss = 0.04071 Time = 117.0053s
+Epoch = [ 26/ 40] Iter = [2400/4937] Loss = 0.03711 Time = 110.0437s
+Epoch = [ 26/ 40] Iter = [2500/4937] Loss = 0.05989 Time = 115.4385s
+Epoch = [ 26/ 40] Iter = [2600/4937] Loss = 0.05273 Time = 112.5393s
+Epoch = [ 26/ 40] Iter = [2700/4937] Loss = 0.1359 Time = 112.5511s
+Epoch = [ 26/ 40] Iter = [2800/4937] Loss = 0.007586 Time = 110.6658s
+Epoch = [ 26/ 40] Iter = [2900/4937] Loss = 0.0005189 Time = 115.5079s
+Epoch = [ 26/ 40] Iter = [3000/4937] Loss = 0.002283 Time = 112.1730s
+Epoch = [ 26/ 40] Iter = [3100/4937] Loss = 0.03905 Time = 112.1035s
+Epoch = [ 26/ 40] Iter = [3200/4937] Loss = 7.3e-17 Time = 111.0659s
+Epoch = [ 26/ 40] Iter = [3300/4937] Loss = 0.005687 Time = 108.5686s
+Epoch = [ 26/ 40] Iter = [3400/4937] Loss = 0.002175 Time = 112.6127s
+Epoch = [ 26/ 40] Iter = [3500/4937] Loss = 0.04787 Time = 111.7386s
+Epoch = [ 26/ 40] Iter = [3600/4937] Loss = 0.03254 Time = 114.7534s
+Epoch = [ 26/ 40] Iter = [3700/4937] Loss = 0.004596 Time = 109.6512s
+Epoch = [ 26/ 40] Iter = [3800/4937] Loss = 7.04e-17 Time = 110.5683s
+Epoch = [ 26/ 40] Iter = [3900/4937] Loss = 0.003187 Time = 112.1729s
+Epoch = [ 26/ 40] Iter = [4000/4937] Loss = 0.02111 Time = 113.1814s
+Traceback (most recent call last):
+  File "/root/FastMRI2025/train_varnet.py", line 68, in <module>
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 177, in train
+    train_loss, train_time = train_epoch(args, epoch, model, train_loader, optimizer, loss_type)
+  File "/root/FastMRI2025/utils/learning/train_part.py", line 25, in train_epoch
+    for iter, data in enumerate(data_loader):
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 733, in __next__
+    data = self._next_data()
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 789, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 55, in fetch
+    return self.collate_fn(data)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 398, in default_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 211, in collate
+    return [
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 212, in <listcomp>
+    collate(samples, collate_fn_map=collate_fn_map)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 155, in collate
+    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)
+  File "/root/FastMRI2025/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/collate.py", line 272, in collate_tensor_fn
+    return torch.stack(batch, 0, out=out)
+KeyboardInterrupt

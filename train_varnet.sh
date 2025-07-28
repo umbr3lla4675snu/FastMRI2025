@@ -3,7 +3,7 @@ python train_varnet.py \
   -e 40 \
   -l 0.001 \
   -r 100 \
-  -n 'Varnet_40_epoch_with_augmentation' \
+  -n 'Varnet_augmentation_no_delay' \
   -t '/root/Data/train/' \
   -v '/root/Data/val/' \
   --cascade 6 \
@@ -11,14 +11,14 @@ python train_varnet.py \
   --sens_chans 5 \
   --seed 150 \
   --use-weighted-loss "True"\
-  --aug_on "True" \
-  --aug_delay 10 \
-  --aug_strength 0.02 \
+  --aug_on \
+  --aug_delay 4 \
+  --aug_strength 0.5 \
   --aug_schedule 'exp' \
-  --aug_max_rotation 2.0 \
+  --aug_max_rotation 100.0 \
   --aug_max_scaling 0.05 \
-  --aug_max_shearing_x 1.0 \
-  --aug_max_shearing_y 1.0 \
+  --aug_max_shearing_x 10.0 \
+  --aug_max_shearing_y 10.0 \
   --lr-scheduler "True" \
   --lr-decay-step 10 \
   --lr-decay-gamma 0.5 \

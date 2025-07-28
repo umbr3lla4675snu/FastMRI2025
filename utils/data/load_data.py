@@ -7,145 +7,84 @@ from pathlib import Path
 import numpy as np
 import torch
 
-class AugmentedVarNetDataTransform:
-    """
-    VarNetDataTransform wrapper with data augmentation support
-    """
-    def __init__(self, isforward=False, args=None):
-        self.isforward = isforward
-        self.args = args
+# class DataTransform:
+#     """
+#     Data Transformer using VarNet's transform with augmentation support
+#     """
+#     def __init__(self, isforward=False, args=None):
+#         self.isforward = isforward
+#         self.args = args
         
-        # Initialize base VarNetDataTransform
-        self.base_transform = VarNetDataTransform(
-            mask_func=None,
-            use_seed=True
-        )
-        
-        # Initialize DataAugmentor if augmentation is enabled and not in forward mode
-        if not isforward and args is not None and hasattr(args, 'aug_on') and args.aug_on:
-            from utils.data.Augmentation.data_augment import DataAugmentor
-            # Create a function that returns current epoch
-            def get_current_epoch():
-                return getattr(args, 'current_epoch', 0)
+#         # Initialize DataAugmentor if augmentation is enabled and not in forward mode
+#         augmentor = None
+#         if not isforward and args is not None and hasattr(args, 'aug_on') and args.aug_on:
+#             from utils.data.Augmentation.data_augment import DataAugmentor
+#             # Create a function that returns current epoch
+#             def get_current_epoch():
+#                 return getattr(args, 'current_epoch', 0)
             
-            self.augmentor = DataAugmentor(args, get_current_epoch)
-        else:
-            self.augmentor = None
+#             augmentor = DataAugmentor(args, get_current_epoch)
+
+#         mask = create_mask_for_mask_type(
+#         args.mask_type, args.center_fractions, args.accelerations
+#     )
+        
+#         # Initialize VarNetDataTransform with augmentor
+#         self.transform = VarNetDataTransform(
+#             augmentor=augmentor,
+#             mask_func=None,
+#             use_seed=True
+#         )
     
-    def __call__(self, kspace, mask, target, attrs, fname, slice_num, max_slice_index):
-        # Apply base transform first
-        if not self.isforward and self.augmentor is not None:
-            # For augmentation, we need to work with the original data
-            from utils.model.fastmri.data.transforms import to_tensor
-            
-            # Convert to tensor format for augmentation
-            kspace_tensor = to_tensor(kspace)
-            # kspace_tensor is already in [real, imag] format in the last dimension
-            # No need to call .real and .imag - it's already stacked
-            full_kspace = kspace_tensor
-            
-            # Get target size
-            if target is not None:
-                target_tensor = to_tensor(target)
-                target_size = target_tensor.shape
-            else:
-                target_size = [384, 384]  # Default target size
-            
-            # Apply augmentation
-            augmented_kspace, augmented_target, augmentation_applied = self.augmentor(full_kspace, target_size)
-            
-            if augmentation_applied and augmented_target is not None:
-                # Convert back to numpy for base transform
-                # augmented_kspace is already in [real, imag] format
-                augmented_kspace_np = augmented_kspace[..., 0].numpy() + 1j * augmented_kspace[..., 1].numpy()
-                augmented_target_np = augmented_target.numpy()
-                
-                # Adjust mask if necessary
-                original_shape = kspace.shape
-                new_shape = augmented_kspace_np.shape
-                
-                # Handle mask adjustment for frequency dimension changes
-                if new_shape != original_shape:
-                    # Create new mask that matches augmented data dimensions
-                    if mask.ndim == 1:
-                        # 1D mask case
-                        original_freq_dim = len(mask)
-                        new_freq_dim = new_shape[-2]
-                        
-                        if new_freq_dim != original_freq_dim:
-                            if new_freq_dim > original_freq_dim:
-                                pad_size = (new_freq_dim - original_freq_dim) // 2
-                                adjusted_mask = np.zeros(new_freq_dim, dtype=mask.dtype)
-                                adjusted_mask[pad_size:pad_size + original_freq_dim] = mask
-                            else:
-                                start_idx = (original_freq_dim - new_freq_dim) // 2
-                                adjusted_mask = mask[start_idx:start_idx + new_freq_dim]
-                        else:
-                            adjusted_mask = mask
-                    else:
-                        # Multi-dimensional mask case
-                        adjusted_mask = mask
-                        # Additional logic for multi-dim masks if needed
-                else:
-                    adjusted_mask = mask
-                
-                # Update attrs for reconstruction size and add missing VarNet attributes
-                updated_attrs = attrs.copy()
-                if 'recon_size' in updated_attrs:
-                    updated_attrs['recon_size'] = list(augmented_target_np.shape[-2:])
-                else:
-                    updated_attrs['recon_size'] = list(augmented_target_np.shape[-2:])
-                
-                # Add required VarNet attributes if missing
-                if 'padding_left' not in updated_attrs:
-                    updated_attrs['padding_left'] = 0
-                if 'padding_right' not in updated_attrs:
-                    updated_attrs['padding_right'] = augmented_kspace_np.shape[-1]
-                if 'max' not in updated_attrs:
-                    updated_attrs['max'] = float(np.abs(augmented_target_np).max()) if augmented_target_np is not None else 1.0
-                
-                # Apply base transform with augmented data
-                base_result = self.base_transform(
-                    kspace=augmented_kspace_np,
-                    mask=adjusted_mask,
-                    target=augmented_target_np,
-                    attrs=updated_attrs,
-                    fname=fname,
-                    slice_num=slice_num
-                )
-                
-                # VarNetDataTransform returns: (masked_kspace, mask, target, fname, slice_num, max_value, crop_size)
-                # We need to add max_slice_index to the return tuple
-                return base_result + (max_slice_index,)
+#     def __call__(self, kspace, mask, target, attrs, fname, slice_num, max_slice_index):
+#         # Add required VarNet attributes if missing
+#         if attrs != -1 and isinstance(attrs, dict):  # Check if not in forward mode and is dict
+#             updated_attrs = attrs.copy()
+#             if 'padding_left' not in updated_attrs:
+#                 updated_attrs['padding_left'] = 0
+#             if 'padding_right' not in updated_attrs:
+#                 updated_attrs['padding_right'] = kspace.shape[-1]
+#             if 'max' not in updated_attrs and target is not None and hasattr(target, 'shape'):
+#                 updated_attrs['max'] = float(np.abs(target).max())
+#             elif 'max' not in updated_attrs:
+#                 updated_attrs['max'] = 1.0
+#             if 'recon_size' not in updated_attrs:
+#                 if target is not None and hasattr(target, 'shape'):
+#                     updated_attrs['recon_size'] = list(target.shape[-2:])
+#                 else:
+#                     updated_attrs['recon_size'] = [384, 384]  # Default size
+#         else:
+#             # Forward mode - create minimal attrs
+#             updated_attrs = {
+#                 'padding_left': 0,
+#                 'padding_right': kspace.shape[-1],
+#                 'max': 1.0,
+#                 'recon_size': [384, 384]
+#             }
         
-        # Apply base transform without augmentation
-        # Add required VarNet attributes if missing
-        updated_attrs = attrs.copy()
-        if 'padding_left' not in updated_attrs:
-            updated_attrs['padding_left'] = 0
-        if 'padding_right' not in updated_attrs:
-            updated_attrs['padding_right'] = kspace.shape[-1]
-        if 'max' not in updated_attrs and target is not None:
-            updated_attrs['max'] = float(np.abs(target).max())
-        elif 'max' not in updated_attrs:
-            updated_attrs['max'] = 1.0
-        if 'recon_size' not in updated_attrs:
-            if target is not None:
-                updated_attrs['recon_size'] = list(target.shape[-2:])
-            else:
-                updated_attrs['recon_size'] = [384, 384]  # Default size
+#         # Call VarNetDataTransform
+#         # Handle forward mode where target might be -1 (int) or an array
+#         if isinstance(target, (int, float)) and target == -1:
+#             target_to_pass = None
+#         elif target is None:
+#             target_to_pass = None
+#         else:
+#             target_to_pass = target
         
-        base_result = self.base_transform(
-            kspace=kspace,
-            mask=mask,
-            target=target,
-            attrs=updated_attrs,
-            fname=fname,
-            slice_num=slice_num
-        )
+#         base_result = self.transform(
+#             kspace=kspace,
+#             mask=mask,
+#             target=target_to_pass,
+#             attrs=updated_attrs,
+#             fname=fname,
+#             slice_num=slice_num
+#         )
         
-        # Add max_slice_index to the return tuple
-        return base_result + (max_slice_index,)
+#         # VarNetDataTransform returns: (masked_kspace, mask, target, fname, slice_num, max_value, crop_size)
+#         # Reorder to match train_part.py expectations: (mask, kspace, target, maximum, fname, slices, crop_size, max_slice_index)
+#         masked_kspace, mask, target, fname, slice_num, max_value, crop_size = base_result
+        
+#         return (mask, masked_kspace, target, max_value, fname, slice_num, crop_size, max_slice_index)
 
 class SliceData(Dataset):
     def __init__(self, root, transform, input_key, target_key, forward=False):
@@ -216,7 +155,7 @@ def create_data_loaders(data_path, args, shuffle=False, isforward=False):
         target_key_ = -1
     data_storage = SliceData(
         root=data_path,
-        transform=DataTransform(isforward, max_key_, args),  # args 전달
+        transform=DataTransform(isforward, max_key_, args, debug_augmentation=True),  # args 전달
         input_key=args.input_key,
         target_key=target_key_,
         forward = isforward

@@ -142,17 +142,66 @@ class AugmentationPipeline:
         return kspace, target
     
     def im_to_target(self, im, target_size):     
-        # Make sure target fits in the augmented image
-        cropped_size = [min(im.shape[-3], target_size[0]), 
-                        min(im.shape[-2], target_size[1])]
+        # Always return exactly the requested target_size to avoid size mismatches
+        # This function handles both cropping (when image is larger) and padding (when image is smaller)
+        
+        def safe_crop_or_pad(tensor, target_shape):
+            """
+            Crop or pad tensor to exact target_shape
+            """
+            current_shape = tensor.shape[-2:]
+            target_h, target_w = target_shape
+            current_h, current_w = current_shape
+            
+            # Calculate padding/cropping for height
+            if current_h < target_h:
+                # Need to pad
+                pad_h = target_h - current_h
+                pad_top = pad_h // 2
+                pad_bottom = pad_h - pad_top
+            else:
+                # Need to crop or exact size
+                pad_top = pad_bottom = 0
+                
+            # Calculate padding/cropping for width  
+            if current_w < target_w:
+                # Need to pad
+                pad_w = target_w - current_w
+                pad_left = pad_w // 2
+                pad_right = pad_w - pad_left
+            else:
+                # Need to crop or exact size
+                pad_left = pad_right = 0
+            
+            # Apply padding if needed
+            if pad_top > 0 or pad_bottom > 0 or pad_left > 0 or pad_right > 0:
+                tensor = torch.nn.functional.pad(tensor, (pad_left, pad_right, pad_top, pad_bottom), mode='constant', value=0)
+            
+            # Apply cropping if needed (after padding, tensor might be larger than target)
+            if tensor.shape[-2] > target_h or tensor.shape[-1] > target_w:
+                # Use center crop if larger than target
+                h_start = (tensor.shape[-2] - target_h) // 2
+                w_start = (tensor.shape[-1] - target_w) // 2
+                tensor = tensor[..., h_start:h_start+target_h, w_start:w_start+target_w]
+                
+            return tensor
         
         if len(im.shape) == 3: 
             # Single-coil
-            target = complex_abs(T.complex_center_crop(im, cropped_size))
+            # First get the complex absolute value
+            target = complex_abs(im)
+            # Then crop/pad to exact target_size
+            target = safe_crop_or_pad(target, target_size)
         else:
             # Multi-coil
             assert len(im.shape) == 4
-            target = T.center_crop(rss_complex(im), cropped_size)
+            # Apply RSS first, then crop/pad to exact size
+            target = rss_complex(im)
+            target = safe_crop_or_pad(target, target_size)
+            
+        # Ensure the target has exactly the requested size
+        assert target.shape[-2:] == tuple(target_size), f"Target size mismatch: got {target.shape[-2:]}, expected {target_size}"
+        
         return target  
             
     def random_apply(self, transform_name):
@@ -268,7 +317,7 @@ class DataAugmentor:
         t = self.current_epoch_fn()
         p_max = self.hparams.aug_strength
 
-        if t < D:
+        if t <= D:
             return 0.0
         else:
             if self.hparams.aug_schedule == 'constant':
@@ -283,10 +332,10 @@ class DataAugmentor:
         
     def add_augmentation_specific_args(parser):
         parser.add_argument(
-            '--aug_on',
-            type=lambda x: (str(x).lower() == 'true'),
+            '--aug_on', 
             default=False,
-            help='This switch turns data augmentation on. 예: --aug_on True',
+            help='This switch turns data augmentation on.',
+            action='store_true'
         )
         # --------------------------------------------
         # Related to augmentation strenght scheduling

@@ -429,8 +429,8 @@ class VarNetDataTransform:
         # Apply augmentations if needed
         if self.use_augment: 
             if self.augmentor.schedule_p() > 0.0:                
-                kspace, target = self.augmentor(kspace, target.shape)
-                
+                kspace, target, _ = self.augmentor(kspace, target.shape)
+
         # Add singleton channel dimension if singlecoil
         if len(kspace.shape) == 3:
             kspace.unsqueeze_(0)
