@@ -10,12 +10,8 @@ echo "  4. Input images from image_input key"
 python reconstruct_triple_input_nafnet.py \
     --GPU-NUM 0 \
     --batch-size 1 \
-    --data-path '/root/Data/leaderboard/' \
-    --out-dir '/root/result/triple_input_reconstructions' \
-    --varnet-checkpoint-path '/root/result/best_Varnet/checkpoints/best_model.pt' \
-    --nafnet-checkpoint-path '/root/result/triple_input_nafnet/checkpoints/best_model.pt'
+    --path_data '/root/Data/leaderboard/' \
+    --net_name 'triple_input_nafnet' \
+    --varnet-checkpoint-path '/root/result/Varnet_augmentation_no_delay/checkpoints/best_model.pt' \
 
 echo "Triple Input NAFNet reconstruction completed!"
-echo "Results saved to /root/result/triple_input_reconstructions/"
-echo "  - enhanced/: Final enhanced reconstructions"
-echo "  - varnet_only/: VarNet-only reconstructions for comparison"

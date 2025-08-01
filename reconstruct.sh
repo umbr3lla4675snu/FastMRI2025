@@ -1,6 +1,6 @@
 python reconstruct.py \
   -b 1 \
-  -n 'Varnet_40_epoch_with_augmentation' \
+  -n 'Varnet_augmentation_no_delay' \
   --cascade 6 \
   --chans 13 \
   --sens_chans 5 \

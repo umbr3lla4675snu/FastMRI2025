@@ -16,7 +16,6 @@ from utils.learning.train_triple_input_nafnet import train_triple_input_nafnet_s
 if os.getcwd() + '/utils/common/' not in sys.path:
     sys.path.insert(1, os.getcwd() + '/utils/common/')
 from utils.common.utils import seed_fix
-from utils.data.Augmentation.data_augment import DataAugmentor
 
 
 def parse():
@@ -50,7 +49,9 @@ def parse():
                        help='Number of decoder blocks per level')
     
     # Data parameters
-    parser.add_argument('--input-key', type=str, default='kspace', help='Name of input key')
+    parser.add_argument('--input-key', type=str, nargs='+', 
+                    default=['kspace', 'image_input', 'image_grappa'], 
+                    help='List of input keys')
     parser.add_argument('--target-key', type=str, default='image_label', help='Name of target key')
     parser.add_argument('--max-key', type=str, default='max', help='Name of max key in attributes')
     parser.add_argument('--use-weighted-loss', type=lambda x: (str(x).lower() == 'true'), default=False, 

@@ -111,6 +111,7 @@ class WeightedSSIMLoss(nn.Module):
         # weight = cos²(current_slice_index / max_slice_index × π/2)
         normalized_indices = slice_indices.float() / max_slice_indices.float()
         weight = torch.cos(normalized_indices * math.pi / 2) ** 2
+        weight = weight.view(-1, 1, 1)  # (batch_size, 1, 1)
         # Apply weights to SSIM loss
         weighted_loss = ssim_loss_per_sample * weight
         return weighted_loss.mean()

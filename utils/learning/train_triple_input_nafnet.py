@@ -45,6 +45,8 @@ def train_triple_input_nafnet_epoch(args, epoch, varnet_model, nafnet_model, dat
         slices = torch.tensor(slices).cuda(non_blocking=True)
         max_slices = torch.tensor(max_slices).cuda(non_blocking=True)
 
+        maximum = maximum.view(-1, 1, 1)
+        
         # Get VarNet reconstruction (frozen)
         with torch.no_grad():
             varnet_output = varnet_model(kspace, mask)
