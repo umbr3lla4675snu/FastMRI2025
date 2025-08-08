@@ -29,7 +29,7 @@ class SSIMLoss(nn.Module):
         NP = win_size ** 2
         self.cov_norm = NP / (NP - 1)
 
-    def forward(self, X, Y, data_range):
+    def forward(self, X, Y, data_range=1.0):
         X = X.unsqueeze(1)
         Y = Y.unsqueeze(1)
         data_range = data_range[:, None, None, None]
@@ -111,7 +111,6 @@ class WeightedSSIMLoss(nn.Module):
         # weight = cos²(current_slice_index / max_slice_index × π/2)
         normalized_indices = slice_indices.float() / max_slice_indices.float()
         weight = torch.cos(normalized_indices * math.pi / 2) ** 2
-        weight = weight.view(-1, 1, 1)  # (batch_size, 1, 1)
         # Apply weights to SSIM loss
         weighted_loss = ssim_loss_per_sample * weight
         return weighted_loss.mean()

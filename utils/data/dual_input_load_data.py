@@ -1,6 +1,6 @@
 """
 Enhanced data loader for Dual Input NAFNet
-Loads kspace, grappa image together (input_image removed)
+Loads kspace and grappa image together (input_image removed)
 """
 
 import h5py
@@ -116,7 +116,6 @@ class DualInputDataTransform:
         
         # Store original mask for later use
         original_mask = mask.copy()
-        original_freq_dim = mask.shape[0]
         
         full_kspace = to_tensor(input_kspace)
         full_kspace = torch.stack((full_kspace.real, full_kspace.imag), dim=-1)

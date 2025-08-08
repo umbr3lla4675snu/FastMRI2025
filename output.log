@@ -1,0 +1,86 @@
+nohup: ignoring input
+Starting Dual Input NAFNet training...
+This model uses VarNet output + GRAPPA image as inputs
+/root/FastMRI2025/utils/learning/train_dual_input_nafnet.py:44: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  slices = torch.tensor(slices).cuda(non_blocking=True)
+/root/FastMRI2025/utils/learning/train_dual_input_nafnet.py:45: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  max_slices = torch.tensor(max_slices).cuda(non_blocking=True)
+/root/FastMRI2025/utils/model/varnet.py:294: UserWarning: where received a uint8 condition tensor. This behavior is deprecated and will be removed in a future version of PyTorch. Use a boolean condition instead. (Triggered internally at /pytorch/aten/src/ATen/native/TensorCompare.cpp:611.)
+  soft_dc = torch.where(mask, current_kspace - ref_kspace, zero) * self.dc_weight
+dual Input NAFNet architecture: width=48, middle_blks=10
+Encoder blocks: [2, 4, 6, 8]
+Decoder blocks: [2, 4, 4, 2]
+VarNet checkpoint: /root/result/Varnet_augmentation_no_delay/checkpoints/best_model.pt
+Data paths - Train: /root/Data/train, Val: /root/Data/val
+Training dual Input NAFNet (VarNet frozen)
+Current cuda device:  0
+Using standard SSIM Loss for Dual Input NAFNet
+No existing checkpoint found. Starting training from scratch...
+Epoch # 0 ............... Dual Input NAFNet ...............
+Epoch = [  0/ 20] Iter = [   0/4937] Loss = 0.4362 Time = 1.2588s
+Epoch = [  0/ 20] Iter = [ 100/4937] Loss = 0.0265 Time = 91.8973s
+Epoch = [  0/ 20] Iter = [ 200/4937] Loss = 0.05079 Time = 91.3918s
+Epoch = [  0/ 20] Iter = [ 300/4937] Loss = 0.0455 Time = 90.5437s
+Epoch = [  0/ 20] Iter = [ 400/4937] Loss = 0.04784 Time = 91.3783s
+Epoch = [  0/ 20] Iter = [ 500/4937] Loss = 0.03507 Time = 92.2525s
+Epoch = [  0/ 20] Iter = [ 600/4937] Loss = 0.2708 Time = 91.9816s
+Epoch = [  0/ 20] Iter = [ 700/4937] Loss = 0.08277 Time = 91.6769s
+Epoch = [  0/ 20] Iter = [ 800/4937] Loss = 0.05399 Time = 90.7656s
+Epoch = [  0/ 20] Iter = [ 900/4937] Loss = 0.03394 Time = 91.3106s
+Epoch = [  0/ 20] Iter = [1000/4937] Loss = 0.08947 Time = 92.2913s
+Epoch = [  0/ 20] Iter = [1100/4937] Loss = 0.03916 Time = 92.0436s
+Epoch = [  0/ 20] Iter = [1200/4937] Loss = 0.07038 Time = 90.9160s
+Epoch = [  0/ 20] Iter = [1300/4937] Loss = 0.0377 Time = 90.7707s
+Epoch = [  0/ 20] Iter = [1400/4937] Loss = 0.01994 Time = 92.3107s
+Epoch = [  0/ 20] Iter = [1500/4937] Loss = 0.0851 Time = 90.3022s
+Epoch = [  0/ 20] Iter = [1600/4937] Loss = 0.08136 Time = 91.4052s
+Epoch = [  0/ 20] Iter = [1700/4937] Loss = 0.02527 Time = 91.9323s
+Epoch = [  0/ 20] Iter = [1800/4937] Loss = 0.05198 Time = 90.3247s
+Epoch = [  0/ 20] Iter = [1900/4937] Loss = 0.03237 Time = 92.5291s
+Epoch = [  0/ 20] Iter = [2000/4937] Loss = 0.0299 Time = 91.3321s
+Epoch = [  0/ 20] Iter = [2100/4937] Loss = 0.1248 Time = 91.4179s
+Epoch = [  0/ 20] Iter = [2200/4937] Loss = 0.03482 Time = 91.1144s
+Epoch = [  0/ 20] Iter = [2300/4937] Loss = 0.1013 Time = 90.5228s
+Epoch = [  0/ 20] Iter = [2400/4937] Loss = 0.02484 Time = 91.5682s
+Epoch = [  0/ 20] Iter = [2500/4937] Loss = 0.0239 Time = 91.1791s
+Epoch = [  0/ 20] Iter = [2600/4937] Loss = 0.08472 Time = 90.1738s
+Epoch = [  0/ 20] Iter = [2700/4937] Loss = 0.04334 Time = 90.8179s
+Epoch = [  0/ 20] Iter = [2800/4937] Loss = 0.04527 Time = 91.5717s
+Epoch = [  0/ 20] Iter = [2900/4937] Loss = 0.04325 Time = 91.1961s
+Epoch = [  0/ 20] Iter = [3000/4937] Loss = 0.04523 Time = 90.6949s
+Epoch = [  0/ 20] Iter = [3100/4937] Loss = 0.02462 Time = 91.0114s
+Epoch = [  0/ 20] Iter = [3200/4937] Loss = 0.0392 Time = 91.1656s
+Epoch = [  0/ 20] Iter = [3300/4937] Loss = 0.0319 Time = 91.1265s
+Epoch = [  0/ 20] Iter = [3400/4937] Loss = 0.03709 Time = 92.8556s
+Epoch = [  0/ 20] Iter = [3500/4937] Loss = 0.05412 Time = 91.9864s
+Epoch = [  0/ 20] Iter = [3600/4937] Loss = 0.02406 Time = 91.1139s
+Epoch = [  0/ 20] Iter = [3700/4937] Loss = 1 Time = 90.1916s
+Epoch = [  0/ 20] Iter = [3800/4937] Loss = 1 Time = 91.0584s
+Epoch = [  0/ 20] Iter = [3900/4937] Loss = 1 Time = 92.8520s
+Epoch = [  0/ 20] Iter = [4000/4937] Loss = 1 Time = 92.8637s
+Epoch = [  0/ 20] Iter = [4100/4937] Loss = 1 Time = 92.4898s
+Epoch = [  0/ 20] Iter = [4200/4937] Loss = 1 Time = 91.2556s
+Epoch = [  0/ 20] Iter = [4300/4937] Loss = 1 Time = 91.1852s
+Epoch = [  0/ 20] Iter = [4400/4937] Loss = 1 Time = 92.4363s
+Epoch = [  0/ 20] Iter = [4500/4937] Loss = 1 Time = 91.5075s
+Epoch = [  0/ 20] Iter = [4600/4937] Loss = 1 Time = 91.9297s
+Epoch = [  0/ 20] Iter = [4700/4937] Loss = 1 Time = 92.1105s
+Epoch = [  0/ 20] Iter = [4800/4937] Loss = 1 Time = 91.6615s
+Epoch = [  0/ 20] Iter = [4900/4937] Loss = 1 Time = 91.7839s
+Traceback (most recent call last):
+  File "/root/FastMRI2025/train_dual_input_nafnet.py", line 94, in <module>
+    train_dual_input_nafnet_standalone(args)
+  File "/root/FastMRI2025/utils/learning/train_dual_input_nafnet.py", line 281, in train_dual_input_nafnet_standalone
+    val_loss, num_subjects, reconstructions, targets, inputs, val_time = validate_dual_input_nafnet(args, varnet_model, nafnet_model, data_loader=val_loader)
+  File "/root/FastMRI2025/utils/learning/train_dual_input_nafnet.py", line 141, in validate_dual_input_nafnet
+    targets[fnames[i]][int(slices[i])] = target[i].numpy()
+TypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.
+train_dual_input_nafnet.sh: line 31: /root/result/dual_input_nafnet/logs/training.pid: No such file or directory
+dual Input NAFNet training completed!
+Model saved to /root/result/dual_input_nafnet/
+This model processes:
+  1. VarNet reconstructed image
+  2. GRAPPA reconstructed image (from image_grappa key)
+To produce enhanced final reconstruction
+
+Resume training: If checkpoint exists in exp_dir, training will resume automatically
